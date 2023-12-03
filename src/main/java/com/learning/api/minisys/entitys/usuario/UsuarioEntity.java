@@ -23,10 +23,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class UsuarioEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CODIGO;
-
     @Column(name = "NOME")
     private String name;
 
