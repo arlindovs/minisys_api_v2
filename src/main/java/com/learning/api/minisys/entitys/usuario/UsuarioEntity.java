@@ -1,20 +1,16 @@
 package com.learning.api.minisys.entitys.usuario;
 
 import com.learning.api.minisys.dtos.UsuarioDto;
+import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.usuario.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "usuario")

@@ -5,8 +5,6 @@ import com.learning.api.minisys.enums.usuario.Role;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.UUID;
-
 public record UsuarioDto(
 
         String guid,

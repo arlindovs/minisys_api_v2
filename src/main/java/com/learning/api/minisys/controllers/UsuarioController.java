@@ -1,5 +1,6 @@
 package com.learning.api.minisys.controllers;
 
+import com.learning.api.minisys.dtos.TableDto;
 import com.learning.api.minisys.dtos.UsuarioDto;
 import com.learning.api.minisys.entitys.usuario.UsuarioEntity;
 import com.learning.api.minisys.repositories.UsuarioRepository;
@@ -25,8 +26,13 @@ public class UsuarioController {
         usuarioRepository.save(new UsuarioEntity(usuarioDto));
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public Iterable<UsuarioDto> listarUsuarios() {
         return usuarioRepository.findAll().stream().map(UsuarioDto::new).toList();
+    }
+
+    @GetMapping("/tabela")
+    public Iterable<TableDto> tabelaUsuarios() {
+        return usuarioRepository.findAll().stream().map(TableDto::new).toList();
     }
 }

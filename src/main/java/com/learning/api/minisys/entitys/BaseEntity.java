@@ -1,4 +1,4 @@
-package com.learning.api.minisys.entitys.usuario;
+package com.learning.api.minisys.entitys;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
