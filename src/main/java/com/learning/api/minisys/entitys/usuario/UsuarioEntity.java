@@ -4,9 +4,11 @@ import com.learning.api.minisys.dtos.integrante.IntegranteDto;
 import com.learning.api.minisys.dtos.usuario.UsuarioDto;
 import com.learning.api.minisys.dtos.usuario.UsuarioGrupoDto;
 import com.learning.api.minisys.entitys.BaseEntity;
+import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -24,13 +26,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class UsuarioEntity extends BaseEntity {
 
-    @Column(name = "GRUPO_USUARIO")
+    @JoinColumn(name = "GRUPO_USUARIO")
     @ManyToOne
-    private UsuarioGrupoDto usuarioGrupo;
+    private UsuarioGrupoEntity usuarioGrupo;
 
-    @Column(name = "FUNCIONARIO")
+    @JoinColumn(name = "FUNCIONARIO")
     @ManyToOne
-    private IntegranteDto funcionario;
+    private IntegranteEntity funcionario;
 
     @Column(name = "LOGIN")
     private String login;
@@ -51,8 +53,8 @@ public class UsuarioEntity extends BaseEntity {
     public UsuarioEntity(UsuarioDto dadosUsuario) {
         super();
 
-        this.usuarioGrupo = dadosUsuario.usuarioGrupo();
-        this.funcionario = dadosUsuario.funcionario();
+        new UsuarioGrupoEntity(dadosUsuario.usuarioGrupo());
+        new IntegranteEntity(dadosUsuario.funcionario());
         this.login = dadosUsuario.login();
         this.password = dadosUsuario.password();
         this.status = dadosUsuario.status();

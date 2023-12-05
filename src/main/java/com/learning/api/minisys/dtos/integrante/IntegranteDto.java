@@ -40,7 +40,7 @@ public record IntegranteDto(
 
     public IntegranteDto(IntegranteEntity integranteEntity) {
         this(integranteEntity.getGuid(),
-                integranteEntity.getIntegranteGrupo(),
+                new IntegranteGrupoDto(integranteEntity.getIntegranteGrupo()),
                 integranteEntity.getName(),
                 integranteEntity.getSecondName(),
                 integranteEntity.getFone(),

@@ -8,6 +8,7 @@ import com.learning.api.minisys.enums.integrante.TipoDocumento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class IntegranteEntity extends BaseEntity {
 
-    @Column(name = "GRUPO_INTEGRANTE")
+    @JoinColumn(name = "GRUPO_INTEGRANTE")
     @ManyToOne
-    private IntegranteGrupoDto integranteGrupo;
+    private IntegranteGrupoEntity integranteGrupo;
 
     @Column(name = "NOME")
     private String name;
@@ -64,7 +65,7 @@ public class IntegranteEntity extends BaseEntity {
     public IntegranteEntity(IntegranteDto dadosIntegrante) {
         super();
 
-        this.integranteGrupo = dadosIntegrante.integranteGrupo();
+        this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
         this.name = dadosIntegrante.name();
         this.secondName = dadosIntegrante.secondName();
         this.fone = dadosIntegrante.fone();

@@ -42,7 +42,7 @@ public record IntegranteEnderecoDto(
 
     public IntegranteEnderecoDto(IntegranteEnderecoEntity integranteEnderecoEntity) {
         this(integranteEnderecoEntity.getGuid(),
-                integranteEnderecoEntity.getIntegrante(),
+                new IntegranteDto(integranteEnderecoEntity.getIntegrante()),
                 integranteEnderecoEntity.getType(),
                 integranteEnderecoEntity.getStateRegistration(),
                 integranteEnderecoEntity.getCep(),

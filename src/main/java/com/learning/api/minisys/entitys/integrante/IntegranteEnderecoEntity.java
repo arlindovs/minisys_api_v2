@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "usuario")
+@Table(name = "integrante_endereco")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,10 +29,9 @@ public class IntegranteEnderecoEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "INTEGRANTE")
-    @Column(name = "INTEGRANTE")
-    private IntegranteDto integrante;
+    private IntegranteEntity integrante;
 
-    @Column(name = "TIPO_ENDERECO")
+    @Column(name = "TIPO")
     @Enumerated
     private TipoEndereco type;
 
@@ -71,7 +70,7 @@ public class IntegranteEnderecoEntity extends BaseEntity {
     public IntegranteEnderecoEntity(IntegranteEnderecoDto integranteEnderecoDto) {
         super();
 
-        this.integrante = integranteEnderecoDto.integrante();
+        this.integrante = new IntegranteEntity(integranteEnderecoDto.integrante());
         this.type = integranteEnderecoDto.type();
         this.stateRegistration = integranteEnderecoDto.stateRegistration();
         this.cep = integranteEnderecoDto.cep();

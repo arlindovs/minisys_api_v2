@@ -36,8 +36,8 @@ public record UsuarioDto(
 
     public UsuarioDto(UsuarioEntity usuarioEntity) {
         this(usuarioEntity.getGuid(),
-                usuarioEntity.getUsuarioGrupo(),
-                usuarioEntity.getFuncionario(),
+                new UsuarioGrupoDto(usuarioEntity.getUsuarioGrupo()),
+                new IntegranteDto(usuarioEntity.getFuncionario()),
                 usuarioEntity.getLogin(),
                 usuarioEntity.getPassword(),
                 usuarioEntity.getStatus(),
