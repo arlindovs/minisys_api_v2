@@ -4,6 +4,7 @@ import com.learning.api.minisys.dtos.integrante.IntegranteDto;
 import com.learning.api.minisys.entitys.usuario.UsuarioEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -26,10 +27,9 @@ public record UsuarioDto(
         @NotBlank(message = "O campo status é obrigatório")
         Status status,
 
-        @NotBlank(message = "O campo empresa é obrigatório")
+        @NotNull(message = "O campo empresa é obrigatório")
         Long company,
 
-        @NotBlank(message = "O campo versão é obrigatório")
         LocalDateTime version
 
 ) {

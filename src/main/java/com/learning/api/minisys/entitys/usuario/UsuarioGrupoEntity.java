@@ -49,6 +49,6 @@ public class UsuarioGrupoEntity extends BaseEntity {
         this.profile = usuarioGrupoDto.profile();
         this.status = usuarioGrupoDto.status();
         this.company = usuarioGrupoDto.company();
-        this.version = usuarioGrupoDto.version();
+        this.version = LocalDateTime.now();
     }
 }

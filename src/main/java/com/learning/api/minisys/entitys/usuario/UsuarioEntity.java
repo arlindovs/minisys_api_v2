@@ -59,7 +59,7 @@ public class UsuarioEntity extends BaseEntity {
         this.password = dadosUsuario.password();
         this.status = dadosUsuario.status();
         this.company = dadosUsuario.company();
-        this.version = dadosUsuario.version();
+        this.version = LocalDateTime.now();
     }
 
 }

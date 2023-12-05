@@ -81,6 +81,6 @@ public class IntegranteEnderecoEntity extends BaseEntity {
         this.district = integranteEnderecoDto.district();
         this.city = integranteEnderecoDto.city();
         this.state = integranteEnderecoDto.state();
-        this.version = integranteEnderecoDto.version();
+        this.version = LocalDateTime.now();
     }
 }

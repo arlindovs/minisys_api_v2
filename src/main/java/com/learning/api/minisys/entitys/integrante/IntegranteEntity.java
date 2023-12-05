@@ -75,6 +75,6 @@ public class IntegranteEntity extends BaseEntity {
         this.creationDate = dadosIntegrante.creationDate();
         this.status = dadosIntegrante.status();
         this.company = dadosIntegrante.company();
-        this.version = dadosIntegrante.version();
+        this.version = LocalDateTime.now();
     }
 }

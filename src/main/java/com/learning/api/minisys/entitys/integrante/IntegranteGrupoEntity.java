@@ -43,6 +43,6 @@ public class IntegranteGrupoEntity extends BaseEntity {
         this.description = integranteGrupoDto.description();
         this.status = integranteGrupoDto.status();
         this.company = integranteGrupoDto.company();
-        this.version = integranteGrupoDto.version();
+        this.version = LocalDateTime.now();
     }
 }
