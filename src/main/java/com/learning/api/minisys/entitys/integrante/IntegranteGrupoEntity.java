@@ -1,6 +1,7 @@
 package com.learning.api.minisys.entitys.integrante;
 
 import com.learning.api.minisys.dtos.integrante.IntegranteGrupoDto;
+import com.learning.api.minisys.dtos.integrante.IntegranteGuidGrupoDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.persistence.Column;
@@ -44,5 +45,9 @@ public class IntegranteGrupoEntity extends BaseEntity {
         this.status = integranteGrupoDto.status();
         this.company = integranteGrupoDto.company();
         this.version = LocalDateTime.now();
+    }
+
+    public IntegranteGrupoEntity(IntegranteGuidGrupoDto integranteGuidGrupoDto) {
+        super();
     }
 }

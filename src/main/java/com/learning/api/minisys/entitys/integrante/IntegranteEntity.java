@@ -1,12 +1,13 @@
 package com.learning.api.minisys.entitys.integrante;
 
 import com.learning.api.minisys.dtos.integrante.IntegranteDto;
-import com.learning.api.minisys.dtos.integrante.IntegranteGrupoDto;
+import com.learning.api.minisys.dtos.integrante.IntegranteGuidDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -43,6 +44,7 @@ public class IntegranteEntity extends BaseEntity {
     private String email;
 
     @Column(name = "TIPO_DOCUMENTO")
+    @Enumerated(EnumType.STRING)
     private TipoDocumento documentType;
 
     @Column(name = "DOCUMENTO")
@@ -52,7 +54,7 @@ public class IntegranteEntity extends BaseEntity {
     private LocalDateTime creationDate;
 
     @Column(name = "STATUS")
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "EMPRESA")
@@ -72,9 +74,13 @@ public class IntegranteEntity extends BaseEntity {
         this.email = dadosIntegrante.email();
         this.documentType = dadosIntegrante.documentType();
         this.document = dadosIntegrante.document();
-        this.creationDate = dadosIntegrante.creationDate();
+        this.creationDate = LocalDateTime.now();
         this.status = dadosIntegrante.status();
         this.company = dadosIntegrante.company();
         this.version = LocalDateTime.now();
+    }
+
+    public IntegranteEntity(IntegranteGuidDto integranteGuidDto) {
+        super();
     }
 }

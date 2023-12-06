@@ -44,4 +44,8 @@ public record UsuarioDto(
                 usuarioEntity.getCompany(),
                 usuarioEntity.getVersion());
     }
+
+    public UsuarioDto(String guid) {
+        this(guid, null, null, null, null, null, null, null);
+    }
 }

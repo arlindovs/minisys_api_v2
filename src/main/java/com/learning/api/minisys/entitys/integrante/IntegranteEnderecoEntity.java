@@ -32,7 +32,7 @@ public class IntegranteEnderecoEntity extends BaseEntity {
     private IntegranteEntity integrante;
 
     @Column(name = "TIPO")
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TipoEndereco type;
 
     @Column(name = "INSCRICAO_ESTADUAL")

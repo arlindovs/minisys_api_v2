@@ -36,4 +36,8 @@ public record UsuarioGrupoDto(
                 usuarioGrupoEntity.getCompany(),
                 usuarioGrupoEntity.getVersion());
     }
+
+    public UsuarioGrupoDto(String guid) {
+        this(guid, null, null, null, null, null);
+    }
 }

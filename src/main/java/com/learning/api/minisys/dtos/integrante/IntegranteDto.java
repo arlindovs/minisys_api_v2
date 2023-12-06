@@ -8,12 +8,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public record IntegranteDto(
 
         String guid,
 
-        IntegranteGrupoDto integranteGrupo,
+        IntegranteGuidGrupoDto integranteGrupo,
 
         String name,
 
@@ -40,7 +41,7 @@ public record IntegranteDto(
 
     public IntegranteDto(IntegranteEntity integranteEntity) {
         this(integranteEntity.getGuid(),
-                new IntegranteGrupoDto(integranteEntity.getIntegranteGrupo()),
+                new IntegranteGuidGrupoDto(integranteEntity.getIntegranteGrupo()),
                 integranteEntity.getName(),
                 integranteEntity.getSecondName(),
                 integranteEntity.getFone(),
