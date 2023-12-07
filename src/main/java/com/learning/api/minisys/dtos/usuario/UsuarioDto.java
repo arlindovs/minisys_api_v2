@@ -1,8 +1,10 @@
 package com.learning.api.minisys.dtos.usuario;
 
-import com.learning.api.minisys.dtos.integrante.IntegranteDto;
+import com.learning.api.minisys.dtos.integrante.IntegranteGuidDto;
+import com.learning.api.minisys.dtos.usuario.UsuarioGrupoGuidDto;
 import com.learning.api.minisys.entitys.usuario.UsuarioEntity;
 import com.learning.api.minisys.enums.Status;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,12 +13,10 @@ import java.time.LocalDateTime;
 public record UsuarioDto(
 
         String guid,
+        
+        UsuarioGrupoGuidDto usuarioGrupo,
 
-        @NotBlank(message = "O campo grupo é obrigatório")
-        UsuarioGrupoDto usuarioGrupo,
-
-        @NotBlank(message = "O campo funcionário é obrigatório")
-        IntegranteDto funcionario,
+        IntegranteGuidDto funcionario,
 
         @NotBlank(message = "O campo nome é obrigatório")
         String login,
@@ -24,7 +24,7 @@ public record UsuarioDto(
         @NotBlank(message = "O campo senha é obrigatório")
         String password,
 
-        @NotBlank(message = "O campo status é obrigatório")
+        @Enumerated
         Status status,
 
         @NotNull(message = "O campo empresa é obrigatório")
@@ -36,16 +36,12 @@ public record UsuarioDto(
 
     public UsuarioDto(UsuarioEntity usuarioEntity) {
         this(usuarioEntity.getGuid(),
-                new UsuarioGrupoDto(usuarioEntity.getUsuarioGrupo()),
-                new IntegranteDto(usuarioEntity.getFuncionario()),
+                new UsuarioGrupoGuidDto(usuarioEntity.getUsuarioGrupo()),
+                new IntegranteGuidDto(usuarioEntity.getFuncionario()),
                 usuarioEntity.getLogin(),
                 usuarioEntity.getPassword(),
                 usuarioEntity.getStatus(),
                 usuarioEntity.getCompany(),
                 usuarioEntity.getVersion());
-    }
-
-    public UsuarioDto(String guid) {
-        this(guid, null, null, null, null, null, null, null);
     }
 }

@@ -8,6 +8,8 @@ import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -41,6 +43,7 @@ public class UsuarioEntity extends BaseEntity {
     private String password;
 
     @Column(name = "STATUS")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "EMPRESA")

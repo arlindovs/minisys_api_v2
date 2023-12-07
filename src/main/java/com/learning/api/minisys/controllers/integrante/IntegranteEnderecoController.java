@@ -35,7 +35,7 @@ public class IntegranteEnderecoController {
         Optional<IntegranteEntity> integranteEntity = integranteRepository.findByGuid(integranteEnderecoDto.integrante().guid());
 
         if(integranteEntity.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Integrante not found with the provided GUID");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Integrante GUID não encontrado");
         }
 
         IntegranteEnderecoEntity integranteEnderecoEntity = new IntegranteEnderecoEntity(integranteEnderecoDto);

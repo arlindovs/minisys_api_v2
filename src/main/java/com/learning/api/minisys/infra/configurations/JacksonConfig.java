@@ -9,6 +9,7 @@ import com.learning.api.minisys.dtos.integrante.IntegranteGuidGrupoDto;
 import com.learning.api.minisys.dtos.integrante.IntegranteGuidDto;
 import com.learning.api.minisys.dtos.usuario.UsuarioDto;
 import com.learning.api.minisys.dtos.usuario.UsuarioGrupoDto;
+import com.learning.api.minisys.dtos.usuario.UsuarioGrupoGuidDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -38,6 +39,18 @@ public class JacksonConfig {
             @Override
             public IntegranteGuidDto deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
                 return new IntegranteGuidDto(UUID.fromString(p.getValueAsString()));
+            }
+        });
+        return module;
+    }
+
+    @Bean
+    public SimpleModule usuarioGrupoGuidDtoDeserializerModule() {
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(UsuarioGrupoGuidDto.class, new JsonDeserializer<>() {
+            @Override
+            public UsuarioGrupoGuidDto deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+                return new UsuarioGrupoGuidDto(UUID.fromString(p.getValueAsString()));
             }
         });
         return module;
