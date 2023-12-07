@@ -67,7 +67,9 @@ public class IntegranteEntity extends BaseEntity {
     public IntegranteEntity(IntegranteDto dadosIntegrante) {
         super();
 
-        this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
+        if (dadosIntegrante.integranteGrupo() != null) {
+            this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
+        }
         this.name = dadosIntegrante.name();
         this.secondName = dadosIntegrante.secondName();
         this.fone = dadosIntegrante.fone();

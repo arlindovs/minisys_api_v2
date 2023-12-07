@@ -4,6 +4,7 @@ import com.learning.api.minisys.dtos.integrante.IntegranteEnderecoDto;
 import com.learning.api.minisys.entitys.integrante.IntegranteEnderecoEntity;
 import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
 import com.learning.api.minisys.repositories.IntegranteEnderecoRepository;
+import com.learning.api.minisys.repositories.IntegranteRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,13 @@ public class IntegranteEnderecoController {
     @Autowired
     private IntegranteEnderecoRepository integranteEnderecoRepository;
 
+    @Autowired
+    private IntegranteRepository integranteRepository;
+
     @PostMapping
     @Transactional
     public ResponseEntity<Void> cadastrarIntegranteEndereco(@RequestBody @Valid IntegranteEnderecoDto integranteEnderecoDto) {
-        Optional<IntegranteEntity> integranteEntity = integranteEnderecoRepository.findByGuid(integranteEnderecoDto.integrante().guid());
+        Optional<IntegranteEntity> integranteEntity = integranteRepository.findByGuid(integranteEnderecoDto.integrante().guid());
 
         if(integranteEntity.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Integrante not found with the provided GUID");

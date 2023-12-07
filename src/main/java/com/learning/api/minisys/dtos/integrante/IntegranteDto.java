@@ -1,6 +1,7 @@
 package com.learning.api.minisys.dtos.integrante;
 
 import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
+import com.learning.api.minisys.entitys.integrante.IntegranteGrupoEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
 import jakarta.persistence.Enumerated;
@@ -41,7 +42,7 @@ public record IntegranteDto(
 
     public IntegranteDto(IntegranteEntity integranteEntity) {
         this(integranteEntity.getGuid(),
-                new IntegranteGuidGrupoDto(integranteEntity.getIntegranteGrupo()),
+                integranteEntity.getIntegranteGrupo() != null ? new IntegranteGuidGrupoDto(integranteEntity.getIntegranteGrupo()) : null,
                 integranteEntity.getName(),
                 integranteEntity.getSecondName(),
                 integranteEntity.getFone(),

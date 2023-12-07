@@ -25,21 +25,23 @@ public class IntegranteController {
     @Autowired
     private IntegranteGrupoRepository integranteGrupoRepository;
 
-    @PostMapping
-    @Transactional
-    public ResponseEntity<Void> cadastrarIntegrante(@RequestBody @Valid IntegranteDto integranteDto) {
+@PostMapping
+@Transactional
+public ResponseEntity<Void> cadastrarIntegrante(@RequestBody @Valid IntegranteDto integranteDto) {
+    IntegranteEntity integranteEntity = new IntegranteEntity(integranteDto);
+
+    if (integranteDto.integranteGrupo() != null) {
         Optional<IntegranteGrupoEntity> integranteGrupoEntity = integranteGrupoRepository.findByGuid(integranteDto.integranteGrupo().guid());
 
-        if (integranteGrupoEntity.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "IntegranteGrupo not found with the provided GUID");
+        if (integranteGrupoEntity.isPresent()) {
+            integranteEntity.setIntegranteGrupo(integranteGrupoEntity.get());
         }
-
-        IntegranteEntity integranteEntity = new IntegranteEntity(integranteDto);
-        integranteEntity.setIntegranteGrupo(integranteGrupoEntity.get());
-        integranteRepository.save(integranteEntity);
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    integranteRepository.save(integranteEntity);
+
+    return new ResponseEntity<>(HttpStatus.CREATED);
+}
 
     @GetMapping
     public Iterable<IntegranteDto> listarIntegrantes() {
