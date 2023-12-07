@@ -54,6 +54,22 @@ public class UsuarioGrupoEntity extends BaseEntity {
         this.version = LocalDateTime.now();
     }
 
+    public void atualizarUsuarioGrupo(UsuarioGrupoDto usuarioGrupoDto) {
+        if(usuarioGrupoDto.description() != null) {
+            this.description = usuarioGrupoDto.description();
+        }
+        if(usuarioGrupoDto.profile() != null) {
+            this.profile = usuarioGrupoDto.profile();
+        }
+        if(usuarioGrupoDto.status() != null) {
+            this.status = usuarioGrupoDto.status();
+        }
+        if(usuarioGrupoDto.company() != null) {
+            this.company = usuarioGrupoDto.company();
+        }
+        this.version = LocalDateTime.now();
+    }
+
     public UsuarioGrupoEntity(UsuarioGrupoGuidDto usuarioGrupoGuidDto) {
         super();
     }

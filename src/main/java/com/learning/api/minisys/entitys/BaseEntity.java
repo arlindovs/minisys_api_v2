@@ -1,5 +1,6 @@
 package com.learning.api.minisys.entitys;
 
+import com.learning.api.minisys.dtos.usuario.UsuarioGrupoDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,4 +24,5 @@ public class BaseEntity {
     public BaseEntity() {
         this.guid = UUID.randomUUID().toString();
     }
+
 }

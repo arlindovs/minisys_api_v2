@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public record UsuarioDto(
 
         String guid,
-        
+
         UsuarioGrupoGuidDto usuarioGrupo,
 
         IntegranteGuidDto funcionario,
