@@ -52,7 +52,7 @@ public class UsuarioGrupoController {
             throw new IllegalArgumentException("GUID não encontrado");
         });
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -47,6 +47,19 @@ public class IntegranteGrupoEntity extends BaseEntity {
         this.version = LocalDateTime.now();
     }
 
+    public void atualizarIntegranteGrupo(IntegranteGrupoDto integranteGrupoDto) {
+        if(integranteGrupoDto.description() != null) {
+            this.description = integranteGrupoDto.description();
+        }
+        if(integranteGrupoDto.status() != null) {
+            this.status = integranteGrupoDto.status();
+        }
+        if(integranteGrupoDto.company() != null) {
+            this.company = integranteGrupoDto.company();
+        }
+        this.version = LocalDateTime.now();
+    }
+
     public IntegranteGrupoEntity(IntegranteGuidGrupoDto integranteGuidGrupoDto) {
         super();
     }
