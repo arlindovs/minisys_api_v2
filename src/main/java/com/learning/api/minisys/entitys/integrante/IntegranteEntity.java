@@ -47,7 +47,7 @@ public class IntegranteEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TipoDocumento documentType;
 
-    @Column(name = "DOCUMENTO")
+    @Column(name = "DOCUMENTO", unique = true)
     private String document;
 
     @Column(name = "DATA_CRIACAO")

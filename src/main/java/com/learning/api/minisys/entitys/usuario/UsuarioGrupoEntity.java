@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class UsuarioGrupoEntity extends BaseEntity {
 
-    @Column(name = "DESCRICAO")
+    @Column(name = "DESCRICAO", unique = true)
     private String description;
 
     @Column(name = "PERFIL")

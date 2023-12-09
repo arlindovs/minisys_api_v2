@@ -36,7 +36,7 @@ public class UsuarioEntity extends BaseEntity {
     @ManyToOne
     private IntegranteEntity funcionario;
 
-    @Column(name = "LOGIN")
+    @Column(name = "LOGIN", unique = true)
     private String login;
 
     @Column(name = "SENHA")
