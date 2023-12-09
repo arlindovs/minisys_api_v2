@@ -82,6 +82,37 @@ public class IntegranteEntity extends BaseEntity {
         this.version = LocalDateTime.now();
     }
 
+    public void atualizarIntegrante(IntegranteDto dadosIntegrante) {
+        if (dadosIntegrante.integranteGrupo() != null) {
+            this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
+        }
+        if (dadosIntegrante.name() != null) {
+            this.name = dadosIntegrante.name();
+        }
+        if (dadosIntegrante.secondName() != null) {
+            this.secondName = dadosIntegrante.secondName();
+        }
+        if (dadosIntegrante.fone() != null) {
+            this.fone = dadosIntegrante.fone();
+        }
+        if (dadosIntegrante.email() != null) {
+            this.email = dadosIntegrante.email();
+        }
+        if (dadosIntegrante.documentType() != null) {
+            this.documentType = dadosIntegrante.documentType();
+        }
+        if (dadosIntegrante.document() != null) {
+            this.document = dadosIntegrante.document();
+        }
+        if (dadosIntegrante.status() != null) {
+            this.status = dadosIntegrante.status();
+        }
+        if (dadosIntegrante.company() != null) {
+            this.company = dadosIntegrante.company();
+        }
+        this.version = LocalDateTime.now();
+    }
+
     public IntegranteEntity(IntegranteGuidDto integranteGuidDto) {
         super();
     }

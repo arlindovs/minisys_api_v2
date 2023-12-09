@@ -1,4 +1,4 @@
-package com.learning.api.minisys.repositories;
+package com.learning.api.minisys.repositories.integrante;
 
 import com.learning.api.minisys.entitys.integrante.IntegranteGrupoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

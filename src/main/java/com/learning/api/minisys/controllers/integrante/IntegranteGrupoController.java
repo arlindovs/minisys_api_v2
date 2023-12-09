@@ -2,7 +2,7 @@ package com.learning.api.minisys.controllers.integrante;
 
 import com.learning.api.minisys.dtos.integrante.IntegranteGrupoDto;
 import com.learning.api.minisys.entitys.integrante.IntegranteGrupoEntity;
-import com.learning.api.minisys.repositories.IntegranteGrupoRepository;
+import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
