@@ -1,21 +1,19 @@
 package com.learning.api.minisys.dtos.integrante;
 
 import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
-import com.learning.api.minisys.entitys.integrante.IntegranteGrupoEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
+import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public record IntegranteDto(
 
-        String guid,
+        Long CODIGO,
 
-        IntegranteGuidGrupoDto integranteGrupo,
+        NewIntegranteGrupoDto integranteGrupo,
 
         String name,
 
@@ -41,8 +39,9 @@ public record IntegranteDto(
 ) {
 
     public IntegranteDto(IntegranteEntity integranteEntity) {
-        this(integranteEntity.getGuid(),
-                integranteEntity.getIntegranteGrupo() != null ? new IntegranteGuidGrupoDto(integranteEntity.getIntegranteGrupo()) : null,
+        this(integranteEntity.getCODIGO(),
+                integranteEntity.getIntegranteGrupo() != null ?
+                        new NewIntegranteGrupoDto(integranteEntity.getIntegranteGrupo().getCODIGO()) : null,
                 integranteEntity.getName(),
                 integranteEntity.getSecondName(),
                 integranteEntity.getFone(),

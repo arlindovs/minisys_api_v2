@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 public record UsuarioGrupoDto(
 
-        String guid,
+        Long CODIGO,
 
         @NotBlank(message = "O campo descrição é obrigatório")
         String description,
@@ -29,7 +29,7 @@ public record UsuarioGrupoDto(
 ) {
 
     public UsuarioGrupoDto(UsuarioGrupoEntity usuarioGrupoEntity) {
-        this(usuarioGrupoEntity.getGuid(),
+        this(usuarioGrupoEntity.getCODIGO(),
                 usuarioGrupoEntity.getDescription(),
                 usuarioGrupoEntity.getProfile(),
                 usuarioGrupoEntity.getStatus(),

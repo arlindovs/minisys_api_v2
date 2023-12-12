@@ -32,17 +32,7 @@ public class IntegranteEnderecoController {
     @PostMapping
     @Transactional
     public ResponseEntity<Void> cadastrarIntegranteEndereco(@RequestBody @Valid IntegranteEnderecoDto integranteEnderecoDto) {
-        Optional<IntegranteEntity> integranteEntity = integranteRepository.findByGuid(integranteEnderecoDto.integrante().guid());
-
-        if(integranteEntity.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Integrante GUID não encontrado");
-        }
-
-        IntegranteEnderecoEntity integranteEnderecoEntity = new IntegranteEnderecoEntity(integranteEnderecoDto);
-        integranteEnderecoEntity.setIntegrante(integranteEntity.get());
-        integranteEnderecoRepository.save(integranteEnderecoEntity);
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return null;
     }
 
     @GetMapping

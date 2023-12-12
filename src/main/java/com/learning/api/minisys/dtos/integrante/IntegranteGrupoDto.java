@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public record IntegranteGrupoDto(
 
-        String guid,
+        Long CODIGO,
 
         @NotBlank(message = "O campo descrição é obrigatório")
         String description,
@@ -26,7 +26,7 @@ public record IntegranteGrupoDto(
 ) {
 
     public IntegranteGrupoDto(IntegranteGrupoEntity integranteGrupoEntity) {
-        this(integranteGrupoEntity.getGuid(),
+        this(integranteGrupoEntity.getCODIGO(),
                 integranteGrupoEntity.getDescription(),
                 integranteGrupoEntity.getStatus(),
                 integranteGrupoEntity.getCompany(),

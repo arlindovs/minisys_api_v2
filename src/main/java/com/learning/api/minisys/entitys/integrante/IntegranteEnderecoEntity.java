@@ -68,9 +68,9 @@ public class IntegranteEnderecoEntity extends BaseEntity {
 
 
     public IntegranteEnderecoEntity(IntegranteEnderecoDto integranteEnderecoDto) {
-        super();
-
-        this.integrante = new IntegranteEntity(integranteEnderecoDto.integrante());
+        if (integranteEnderecoDto.integrante() != null) {
+            this.integrante = new IntegranteEntity(integranteEnderecoDto.integrante());
+        }
         this.type = integranteEnderecoDto.type();
         this.stateRegistration = integranteEnderecoDto.stateRegistration();
         this.cep = integranteEnderecoDto.cep();

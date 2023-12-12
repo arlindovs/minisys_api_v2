@@ -1,7 +1,6 @@
 package com.learning.api.minisys.dtos.usuario;
 
-import com.learning.api.minisys.dtos.integrante.IntegranteGuidDto;
-import com.learning.api.minisys.dtos.usuario.UsuarioGrupoGuidDto;
+import com.learning.api.minisys.dtos.integrante.IntegranteDto;
 import com.learning.api.minisys.entitys.usuario.UsuarioEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.persistence.Enumerated;
@@ -12,11 +11,11 @@ import java.time.LocalDateTime;
 
 public record UsuarioDto(
 
-        String guid,
+        Long CODIGO,
 
-        UsuarioGrupoGuidDto usuarioGrupo,
+        UsuarioGrupoDto usuarioGrupo,
 
-        IntegranteGuidDto funcionario,
+        IntegranteDto funcionario,
 
         @NotBlank(message = "O campo nome é obrigatório")
         String login,
@@ -35,9 +34,9 @@ public record UsuarioDto(
 ) {
 
     public UsuarioDto(UsuarioEntity usuarioEntity) {
-        this(usuarioEntity.getGuid(),
-                new UsuarioGrupoGuidDto(usuarioEntity.getUsuarioGrupo()),
-                new IntegranteGuidDto(usuarioEntity.getFuncionario()),
+        this(usuarioEntity.getCODIGO(),
+                usuarioEntity.getUsuarioGrupo() != null ? new UsuarioGrupoDto(usuarioEntity.getUsuarioGrupo()) : null,
+                usuarioEntity.getFuncionario() != null ? new IntegranteDto(usuarioEntity.getFuncionario()) : null,
                 usuarioEntity.getLogin(),
                 usuarioEntity.getPassword(),
                 usuarioEntity.getStatus(),

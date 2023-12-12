@@ -1,10 +1,10 @@
 package com.learning.api.minisys.entitys.integrante;
 
 import com.learning.api.minisys.dtos.integrante.IntegranteDto;
-import com.learning.api.minisys.dtos.integrante.IntegranteGuidDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
+import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -65,8 +65,6 @@ public class IntegranteEntity extends BaseEntity {
 
 
     public IntegranteEntity(IntegranteDto dadosIntegrante) {
-        super();
-
         if (dadosIntegrante.integranteGrupo() != null) {
             this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
         }
@@ -111,9 +109,5 @@ public class IntegranteEntity extends BaseEntity {
             this.company = dadosIntegrante.company();
         }
         this.version = LocalDateTime.now();
-    }
-
-    public IntegranteEntity(IntegranteGuidDto integranteGuidDto) {
-        super();
     }
 }

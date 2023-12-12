@@ -5,13 +5,18 @@ import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
 import com.learning.api.minisys.entitys.integrante.IntegranteGrupoEntity;
 import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import com.learning.api.minisys.repositories.integrante.IntegranteRepository;
-import com.learning.api.minisys.services.integrante.IntegranteService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -25,16 +30,13 @@ public class IntegranteController {
     @Autowired
     private IntegranteGrupoRepository integranteGrupoRepository;
 
-    @Autowired
-    private IntegranteService integranteService;
-
     @PostMapping
     @Transactional
     public ResponseEntity<Void> cadastrarIntegrante(@RequestBody @Valid IntegranteDto integranteDto) {
         IntegranteEntity integranteEntity = new IntegranteEntity(integranteDto);
 
         if (integranteDto.integranteGrupo() != null) {
-            Optional<IntegranteGrupoEntity> integranteGrupoEntity = integranteGrupoRepository.findByGuid(integranteDto.integranteGrupo().guid());
+            Optional<IntegranteGrupoEntity> integranteGrupoEntity = integranteGrupoRepository.findById(integranteDto.integranteGrupo().getCODIGO());
 
             if (integranteGrupoEntity.isPresent()) {
                 integranteEntity.setIntegranteGrupo(integranteGrupoEntity.get());
@@ -52,9 +54,8 @@ public class IntegranteController {
     }
 
     @PutMapping("/{guid}")
-    public ResponseEntity<IntegranteDto> atualizarIntegrante(@PathVariable String guid, @RequestBody @Valid IntegranteDto integranteDto) {
-        IntegranteDto updatedIntegrante = integranteService.updateIntegrante(guid, integranteDto);
-        return new ResponseEntity<>(updatedIntegrante, HttpStatus.OK);
+    public ResponseEntity<IntegranteDto> atualizarIntegrante(@PathVariable Long CODIGO, @RequestBody @Valid IntegranteDto integranteDto) {
+        return null;
     }
 
 

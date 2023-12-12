@@ -18,11 +18,4 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CODIGO;
 
-    @Column(name = "GUID", unique = true)
-    private String guid;
-
-    public BaseEntity() {
-        this.guid = UUID.randomUUID().toString();
-    }
-
 }

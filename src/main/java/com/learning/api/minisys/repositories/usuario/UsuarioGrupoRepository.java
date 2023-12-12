@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UsuarioGrupoRepository extends JpaRepository<UsuarioGrupoEntity, String> {
-
-    Optional<UsuarioGrupoEntity> findByGuid(String guid);
+public interface UsuarioGrupoRepository extends JpaRepository<UsuarioGrupoEntity, Long> {
 }

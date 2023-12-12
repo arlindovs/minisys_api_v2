@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface IntegranteEnderecoRepository extends JpaRepository<IntegranteEnderecoEntity, String> {
-    Optional<IntegranteEntity> findByGuid(String guid);
+public interface IntegranteEnderecoRepository extends JpaRepository<IntegranteEnderecoEntity, Long> {
 }

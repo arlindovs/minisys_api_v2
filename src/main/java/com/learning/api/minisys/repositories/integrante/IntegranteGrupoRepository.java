@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface IntegranteGrupoRepository extends JpaRepository<IntegranteGrupoEntity, String> {
+public interface IntegranteGrupoRepository extends JpaRepository<IntegranteGrupoEntity, Long> {
 
-    Optional<IntegranteGrupoEntity> findByGuid(String guid);
 }

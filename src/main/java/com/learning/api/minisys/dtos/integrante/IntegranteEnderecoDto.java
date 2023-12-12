@@ -4,16 +4,14 @@ import com.learning.api.minisys.entitys.integrante.IntegranteEnderecoEntity;
 import com.learning.api.minisys.enums.integrante.TipoEndereco;
 import com.learning.api.minisys.enums.integrante.TipoLogradouro;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public record IntegranteEnderecoDto(
 
-        String guid,
+        Long CODIGO,
 
-        IntegranteGuidDto integrante,
+        IntegranteDto integrante,
 
         @Enumerated
         TipoEndereco type,
@@ -41,8 +39,8 @@ public record IntegranteEnderecoDto(
 ) {
 
     public IntegranteEnderecoDto(IntegranteEnderecoEntity integranteEnderecoEntity) {
-        this(integranteEnderecoEntity.getGuid(),
-                new IntegranteGuidDto(integranteEnderecoEntity.getIntegrante()),
+        this(integranteEnderecoEntity.getCODIGO(),
+                integranteEnderecoEntity.getIntegrante() != null ? new IntegranteDto(integranteEnderecoEntity.getIntegrante()) : null,
                 integranteEnderecoEntity.getType(),
                 integranteEnderecoEntity.getStateRegistration(),
                 integranteEnderecoEntity.getCep(),

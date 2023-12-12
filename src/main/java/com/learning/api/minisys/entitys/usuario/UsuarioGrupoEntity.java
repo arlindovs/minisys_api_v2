@@ -1,8 +1,6 @@
 package com.learning.api.minisys.entitys.usuario;
 
-import com.learning.api.minisys.dtos.integrante.IntegranteGuidDto;
 import com.learning.api.minisys.dtos.usuario.UsuarioGrupoDto;
-import com.learning.api.minisys.dtos.usuario.UsuarioGrupoGuidDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.usuario.Role;
@@ -45,8 +43,6 @@ public class UsuarioGrupoEntity extends BaseEntity {
 
 
     public UsuarioGrupoEntity(UsuarioGrupoDto usuarioGrupoDto) {
-        super();
-
         this.description = usuarioGrupoDto.description();
         this.profile = usuarioGrupoDto.profile();
         this.status = usuarioGrupoDto.status();
@@ -70,7 +66,11 @@ public class UsuarioGrupoEntity extends BaseEntity {
         this.version = LocalDateTime.now();
     }
 
-    public UsuarioGrupoEntity(UsuarioGrupoGuidDto usuarioGrupoGuidDto) {
-        super();
+    public void setStatusAtivo() {
+        this.status = Status.ATIVO;
+    }
+
+    public void setStatusInativo() {
+        this.status = Status.DESATIVADO;
     }
 }
