@@ -53,10 +53,45 @@ public class IntegranteController {
         return integranteRepository.findAll().stream().map(IntegranteDto::new).toList();
     }
 
-    @PutMapping("/{guid}")
-    public ResponseEntity<IntegranteDto> atualizarIntegrante(@PathVariable Long CODIGO, @RequestBody @Valid IntegranteDto integranteDto) {
-        return null;
+    @GetMapping("/{CODIGO}")
+    public ResponseEntity<IntegranteDto> buscarIntegrante(@PathVariable Long CODIGO) {
+        var integrante = integranteRepository.getReferenceById(CODIGO);
+
+        return ResponseEntity.ok(new IntegranteDto(integrante));
     }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity<IntegranteDto> atualizarIntegrante(@RequestBody @Valid IntegranteDto integranteDto) {
+        // Busca a entidade existente no banco de dados
+        IntegranteEntity integrante = integranteRepository.findById(integranteDto.CODIGO())
+                .orElseThrow(() -> new RuntimeException("Integrante não encontrado"));
+
+        // Atualiza os dados da entidade existente com base nos dados recebidos no DTO
+        integrante.atualizarIntegrante(integranteDto);
+
+        // Verifica se há um grupo associado ao integrante no DTO
+        if (integranteDto.integranteGrupo() != null) {
+            Optional<IntegranteGrupoEntity> integranteGrupoEntity = integranteGrupoRepository.findById(integranteDto.integranteGrupo().getCODIGO());
+
+            if (integranteGrupoEntity.isPresent()) {
+                integrante.setIntegranteGrupo(integranteGrupoEntity.get());
+            } else {
+                // Tratar o caso em que o grupo no DTO não foi encontrado no banco de dados
+                // Você pode optar por lançar uma exceção, logar um aviso, ou tomar outra ação apropriada
+            }
+        } else {
+            // Se o grupo for null no DTO, desassocie o integrante do grupo
+            integrante.setIntegranteGrupo(null);
+        }
+
+        // Salva as alterações no banco de dados
+        integranteRepository.save(integrante);
+
+        return ResponseEntity.ok(new IntegranteDto(integrante));
+    }
+
+
 
 
 }
