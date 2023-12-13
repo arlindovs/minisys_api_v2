@@ -3,6 +3,7 @@ package com.learning.api.minisys.controllers.integrante;
 import com.learning.api.minisys.dtos.integrante.IntegranteDto;
 import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
 import com.learning.api.minisys.entitys.integrante.IntegranteGrupoEntity;
+import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import com.learning.api.minisys.repositories.integrante.IntegranteRepository;
 import jakarta.transaction.Transactional;
@@ -10,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -79,6 +81,7 @@ public class IntegranteController {
             } else {
                 // Tratar o caso em que o grupo no DTO não foi encontrado no banco de dados
                 // Você pode optar por lançar uma exceção, logar um aviso, ou tomar outra ação apropriada
+                RuntimeException e = new RuntimeException("Grupo não encontrado");
             }
         } else {
             // Se o grupo for null no DTO, desassocie o integrante do grupo
@@ -91,7 +94,26 @@ public class IntegranteController {
         return ResponseEntity.ok(new IntegranteDto(integrante));
     }
 
+    @DeleteMapping("/{CODIGO}")
+    @Transactional
+    public ResponseEntity<Void> deletarIntegrante(@PathVariable Long CODIGO) {
+        integranteRepository.deleteById(CODIGO);
 
+        return ResponseEntity.noContent().build();
+    }
 
+    @PostMapping("/ativar/{CODIGO}")
+    @Transactional
+    public ResponseEntity<Void> ativarIntegrante(@PathVariable Long CODIGO) {
+        var integrante = integranteRepository.getReferenceById(CODIGO);
+
+        if (integrante.getStatus().equals(Status.ATIVO)) {
+            integrante.setStatusInativo();
+        } else {
+            integrante.setStatusAtivo();
+        }
+
+        return ResponseEntity.noContent().build();
+    }
 
 }

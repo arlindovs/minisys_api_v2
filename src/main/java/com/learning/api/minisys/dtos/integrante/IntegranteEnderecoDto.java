@@ -11,7 +11,7 @@ public record IntegranteEnderecoDto(
 
         Long CODIGO,
 
-        IntegranteDto integrante,
+        NewIntegranteDto integrante,
 
         @Enumerated
         TipoEndereco type,
@@ -40,7 +40,8 @@ public record IntegranteEnderecoDto(
 
     public IntegranteEnderecoDto(IntegranteEnderecoEntity integranteEnderecoEntity) {
         this(integranteEnderecoEntity.getCODIGO(),
-                integranteEnderecoEntity.getIntegrante() != null ? new IntegranteDto(integranteEnderecoEntity.getIntegrante()) : null,
+                integranteEnderecoEntity.getIntegrante() != null ?
+                        new NewIntegranteDto(integranteEnderecoEntity.getIntegrante().getCODIGO()) : null,
                 integranteEnderecoEntity.getType(),
                 integranteEnderecoEntity.getStateRegistration(),
                 integranteEnderecoEntity.getCep(),

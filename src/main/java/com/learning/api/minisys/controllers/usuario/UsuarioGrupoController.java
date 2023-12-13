@@ -63,10 +63,12 @@ public class UsuarioGrupoController {
     @Transactional
     public ResponseEntity<Void> ativarUsuarioGrupo(@PathVariable Long CODIGO) {
         var usuarioGrupo = usuarioGrupoRepository.getReferenceById(CODIGO);
+
         if(usuarioGrupo.getStatus().equals(Status.ATIVO)) {
             usuarioGrupo.setStatusInativo();
+        } else {
+            usuarioGrupo.setStatusAtivo();
         }
-        usuarioGrupo.setStatusAtivo();
 
         return ResponseEntity.noContent().build();
     }

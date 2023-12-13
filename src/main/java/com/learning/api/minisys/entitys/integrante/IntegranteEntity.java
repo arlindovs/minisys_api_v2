@@ -1,6 +1,7 @@
 package com.learning.api.minisys.entitys.integrante;
 
 import com.learning.api.minisys.dtos.integrante.IntegranteDto;
+import com.learning.api.minisys.dtos.integrante.NewIntegranteDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
@@ -80,6 +81,10 @@ public class IntegranteEntity extends BaseEntity {
         this.version = LocalDateTime.now();
     }
 
+    public IntegranteEntity(NewIntegranteDto integrante) {
+        super();
+    }
+
     public void atualizarIntegrante(IntegranteDto dadosIntegrante) {
         if (dadosIntegrante.integranteGrupo() != null) {
             this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
@@ -109,5 +114,13 @@ public class IntegranteEntity extends BaseEntity {
             this.company = dadosIntegrante.company();
         }
         this.version = LocalDateTime.now();
+    }
+
+    public void setStatusAtivo() {
+        this.status = Status.ATIVO;
+    }
+
+    public void setStatusInativo() {
+        this.status = Status.DESATIVADO;
     }
 }

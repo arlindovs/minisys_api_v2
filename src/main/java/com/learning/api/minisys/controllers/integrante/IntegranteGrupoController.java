@@ -64,11 +64,15 @@ public class IntegranteGrupoController {
     @Transactional
     public ResponseEntity<Void> ativarIntegranteGrupo(@PathVariable Long CODIGO) {
         var integranteGrupo = integranteGrupoRepository.getReferenceById(CODIGO);
-        if(integranteGrupo.getStatus().equals(Status.ATIVO)) {
+
+        if (integranteGrupo.getStatus().equals(Status.ATIVO)) {
             integranteGrupo.setStatusInativo();
+        } else {
+            integranteGrupo.setStatusAtivo();
         }
-        integranteGrupo.setStatusAtivo();
 
         return ResponseEntity.noContent().build();
     }
+
+
 }

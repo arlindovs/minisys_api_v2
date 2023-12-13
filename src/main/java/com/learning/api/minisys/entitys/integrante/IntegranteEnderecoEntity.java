@@ -83,4 +83,41 @@ public class IntegranteEnderecoEntity extends BaseEntity {
         this.state = integranteEnderecoDto.state();
         this.version = LocalDateTime.now();
     }
+
+    public void atualizarIntegranteEndereco(IntegranteEnderecoDto integranteEnderecoDto) {
+        if(integranteEnderecoDto.integrante() != null) {
+            this.integrante = new IntegranteEntity(integranteEnderecoDto.integrante());
+        }
+        if(integranteEnderecoDto.type() != null) {
+            this.type = integranteEnderecoDto.type();
+        }
+        if(integranteEnderecoDto.stateRegistration() != null) {
+            this.stateRegistration = integranteEnderecoDto.stateRegistration();
+        }
+        if(integranteEnderecoDto.cep() != null) {
+            this.cep = integranteEnderecoDto.cep();
+        }
+        if(integranteEnderecoDto.addressType() != null) {
+            this.addressType = integranteEnderecoDto.addressType();
+        }
+        if(integranteEnderecoDto.address() != null) {
+            this.address = integranteEnderecoDto.address();
+        }
+        if(integranteEnderecoDto.number() != 0) {
+            this.number = integranteEnderecoDto.number();
+        }
+        if(integranteEnderecoDto.complement() != null) {
+            this.complement = integranteEnderecoDto.complement();
+        }
+        if(integranteEnderecoDto.district() != null) {
+            this.district = integranteEnderecoDto.district();
+        }
+        if(integranteEnderecoDto.city() != null) {
+            this.city = integranteEnderecoDto.city();
+        }
+        if(integranteEnderecoDto.state() != null) {
+            this.state = integranteEnderecoDto.state();
+        }
+        this.version = LocalDateTime.now();
+    }
 }
