@@ -17,8 +17,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -26,7 +32,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioEntity extends BaseEntity {
+public class UsuarioEntity extends BaseEntity implements UserDetails {
 
     @JoinColumn(name = "GRUPO_USUARIO")
     @ManyToOne
@@ -60,7 +66,7 @@ public class UsuarioEntity extends BaseEntity {
             this.funcionario = new IntegranteEntity(dadosUsuario.funcionario());
         }
         this.login = dadosUsuario.login();
-        this.password = dadosUsuario.password();
+        this.password = new BCryptPasswordEncoder().encode(dadosUsuario.password());
         this.status = dadosUsuario.status();
         this.company = dadosUsuario.company();
         this.version = LocalDateTime.now();
@@ -77,7 +83,7 @@ public class UsuarioEntity extends BaseEntity {
             this.login = dadosUsuario.login();
         }
         if (dadosUsuario.password() != null) {
-            this.password = dadosUsuario.password();
+            this.password = new BCryptPasswordEncoder().encode(dadosUsuario.password());
         }
         if (dadosUsuario.status() != null) {
             this.status = dadosUsuario.status();
@@ -94,6 +100,49 @@ public class UsuarioEntity extends BaseEntity {
 
     public void setStatusInativo() {
         this.status = Status.DESATIVADO;
+    }
+
+
+
+//    Metodos do UserDetails
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Verifica se o usuário pertence ao grupo de perfil "ADMIN"
+        if (this.usuarioGrupo.getProfile().equals("ADMIN")) {
+            // Se pertencer, concede as autoridades ROLE_ADMIN e ROLE_USER
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),
+                    new SimpleGrantedAuthority("ROLE_USER"));
+        } else {
+            // Se não pertencer, concede a autoridade ROLE_USER
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+    }
+
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
 
