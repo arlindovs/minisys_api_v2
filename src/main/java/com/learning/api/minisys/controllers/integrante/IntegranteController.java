@@ -38,11 +38,8 @@ public class IntegranteController {
         IntegranteEntity integranteEntity = new IntegranteEntity(integranteDto);
 
         if (integranteDto.integranteGrupo() != null) {
-            Optional<IntegranteGrupoEntity> integranteGrupoEntity = integranteGrupoRepository.findById(integranteDto.integranteGrupo().getCODIGO());
-
-            if (integranteGrupoEntity.isPresent()) {
-                integranteEntity.setIntegranteGrupo(integranteGrupoEntity.get());
-            }
+            integranteGrupoRepository.findById(integranteDto.integranteGrupo().getCODIGO())
+                    .ifPresent(integranteEntity::setIntegranteGrupo);
         }
 
         integranteRepository.save(integranteEntity);
@@ -74,23 +71,18 @@ public class IntegranteController {
 
         // Verifica se há um grupo associado ao integrante no DTO
         if (integranteDto.integranteGrupo() != null) {
-            Optional<IntegranteGrupoEntity> integranteGrupoEntity = integranteGrupoRepository.findById(integranteDto.integranteGrupo().getCODIGO());
-
-            if (integranteGrupoEntity.isPresent()) {
-                integrante.setIntegranteGrupo(integranteGrupoEntity.get());
-            } else {
-                // Tratar o caso em que o grupo no DTO não foi encontrado no banco de dados
-                // Você pode optar por lançar uma exceção, logar um aviso, ou tomar outra ação apropriada
-                RuntimeException e = new RuntimeException("Grupo não encontrado");
-            }
+            // Associa o integrante ao grupo, se fornecido no DTO
+            integranteGrupoRepository.findById(integranteDto.integranteGrupo().getCODIGO())
+                    .ifPresent(integrante::setIntegranteGrupo);
         } else {
-            // Se o grupo for null no DTO, desassocie o integrante do grupo
+            // Se o grupo for null no DTO, desassocia o integrante do grupo
             integrante.setIntegranteGrupo(null);
         }
 
         // Salva as alterações no banco de dados
         integranteRepository.save(integrante);
 
+        // Retorna a resposta com o DTO atualizado
         return ResponseEntity.ok(new IntegranteDto(integrante));
     }
 

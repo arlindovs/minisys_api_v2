@@ -52,12 +52,13 @@ public class UsuarioEntity extends BaseEntity {
     @Column(name = "VERSAO")
     private LocalDateTime version;
 
-
     public UsuarioEntity(UsuarioDto dadosUsuario) {
-        super();
-
-        new UsuarioGrupoEntity(dadosUsuario.usuarioGrupo());
-        new IntegranteEntity(dadosUsuario.funcionario());
+        if (dadosUsuario.usuarioGrupo() != null) {
+            this.usuarioGrupo = new UsuarioGrupoEntity(dadosUsuario.usuarioGrupo());
+        }
+        if (dadosUsuario.funcionario() != null) {
+            this.funcionario = new IntegranteEntity(dadosUsuario.funcionario());
+        }
         this.login = dadosUsuario.login();
         this.password = dadosUsuario.password();
         this.status = dadosUsuario.status();
@@ -65,4 +66,34 @@ public class UsuarioEntity extends BaseEntity {
         this.version = LocalDateTime.now();
     }
 
+    public void atualizarUsuario(UsuarioDto dadosUsuario) {
+        if (dadosUsuario.usuarioGrupo() != null) {
+            this.usuarioGrupo = new UsuarioGrupoEntity(dadosUsuario.usuarioGrupo());
+        }
+        if (dadosUsuario.funcionario() != null) {
+            this.funcionario = new IntegranteEntity(dadosUsuario.funcionario());
+        }
+        if (dadosUsuario.login() != null) {
+            this.login = dadosUsuario.login();
+        }
+        if (dadosUsuario.password() != null) {
+            this.password = dadosUsuario.password();
+        }
+        if (dadosUsuario.status() != null) {
+            this.status = dadosUsuario.status();
+        }
+        if (dadosUsuario.company() != null) {
+            this.company = dadosUsuario.company();
+        }
+        this.version = LocalDateTime.now();
+    }
+
+    public void setStatusAtivo() {
+        this.status = Status.ATIVO;
+    }
+
+    public void setStatusInativo() {
+        this.status = Status.DESATIVADO;
+    }
 }
+
