@@ -1,6 +1,6 @@
 package com.learning.api.minisys.infra.security;
 
-import com.learning.api.minisys.repositories.usuario.UsuarioRepository;
+import com.learning.api.minisys.repositories.cadastro.usuario.UsuarioRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
