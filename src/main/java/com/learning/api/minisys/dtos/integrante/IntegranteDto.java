@@ -3,6 +3,7 @@ package com.learning.api.minisys.dtos.integrante;
 import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
+import com.learning.api.minisys.enums.integrante.TipoIntegrante;
 import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +15,9 @@ public record IntegranteDto(
         Long CODIGO,
 
         NewIntegranteGrupoDto integranteGrupo,
+
+        @Enumerated
+        TipoIntegrante tipoIntegrante,
 
         String name,
 
@@ -42,6 +46,7 @@ public record IntegranteDto(
         this(integranteEntity.getCODIGO(),
                 integranteEntity.getIntegranteGrupo() != null ?
                         new NewIntegranteGrupoDto(integranteEntity.getIntegranteGrupo().getCODIGO()) : null,
+                integranteEntity.getTipoIntegrante(),
                 integranteEntity.getName(),
                 integranteEntity.getSecondName(),
                 integranteEntity.getFone(),

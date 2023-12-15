@@ -5,6 +5,7 @@ import com.learning.api.minisys.dtos.integrante.NewIntegranteDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
+import com.learning.api.minisys.enums.integrante.TipoIntegrante;
 import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +32,10 @@ public class IntegranteEntity extends BaseEntity {
     @JoinColumn(name = "GRUPO_INTEGRANTE")
     @ManyToOne
     private IntegranteGrupoEntity integranteGrupo;
+
+    @Column(name = "TIPO")
+    @Enumerated(EnumType.STRING)
+    TipoIntegrante tipoIntegrante;
 
     @Column(name = "NOME")
     private String name;
@@ -69,6 +74,7 @@ public class IntegranteEntity extends BaseEntity {
         if (dadosIntegrante.integranteGrupo() != null) {
             this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
         }
+        this.tipoIntegrante = dadosIntegrante.tipoIntegrante();
         this.name = dadosIntegrante.name();
         this.secondName = dadosIntegrante.secondName();
         this.fone = dadosIntegrante.fone();
@@ -88,6 +94,9 @@ public class IntegranteEntity extends BaseEntity {
     public void atualizarIntegrante(IntegranteDto dadosIntegrante) {
         if (dadosIntegrante.integranteGrupo() != null) {
             this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
+        }
+        if(dadosIntegrante.tipoIntegrante() != null) {
+            this.tipoIntegrante = dadosIntegrante.tipoIntegrante();
         }
         if (dadosIntegrante.name() != null) {
             this.name = dadosIntegrante.name();
