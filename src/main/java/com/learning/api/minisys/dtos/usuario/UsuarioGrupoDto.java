@@ -14,26 +14,26 @@ public record UsuarioGrupoDto(
         Long CODIGO,
 
         @NotBlank(message = "O campo descrição é obrigatório")
-        String description,
+        String descricao,
 
         @Enumerated
-        Role profile,
+        Role perfil,
 
         @Enumerated
         Status status,
 
         @NotNull(message = "O campo empresa é obrigatório")
-        Long company,
+        Long empresa,
 
-        LocalDateTime version
+        LocalDateTime versao
 ) {
 
     public UsuarioGrupoDto(UsuarioGrupoEntity usuarioGrupoEntity) {
         this(usuarioGrupoEntity.getCODIGO(),
-                usuarioGrupoEntity.getDescription(),
-                usuarioGrupoEntity.getProfile(),
+                usuarioGrupoEntity.getDescricao(),
+                usuarioGrupoEntity.getPerfil(),
                 usuarioGrupoEntity.getStatus(),
-                usuarioGrupoEntity.getCompany(),
-                usuarioGrupoEntity.getVersion());
+                usuarioGrupoEntity.getEmpresa(),
+                usuarioGrupoEntity.getVersao());
     }
 }

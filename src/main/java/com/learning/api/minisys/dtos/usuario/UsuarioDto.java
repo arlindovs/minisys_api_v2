@@ -1,6 +1,5 @@
 package com.learning.api.minisys.dtos.usuario;
 
-import com.learning.api.minisys.dtos.integrante.IntegranteDto;
 import com.learning.api.minisys.dtos.integrante.NewIntegranteDto;
 import com.learning.api.minisys.entitys.usuario.UsuarioEntity;
 import com.learning.api.minisys.enums.Status;
@@ -28,9 +27,9 @@ public record UsuarioDto(
         Status status,
 
         @NotNull(message = "O campo empresa é obrigatório")
-        Long company,
+        Long empresa,
 
-        LocalDateTime version
+        LocalDateTime versao
 
 ) {
 
@@ -41,7 +40,7 @@ public record UsuarioDto(
                 usuarioEntity.getLogin(),
                 usuarioEntity.getPassword(),
                 usuarioEntity.getStatus(),
-                usuarioEntity.getCompany(),
-                usuarioEntity.getVersion());
+                usuarioEntity.getEmpresa(),
+                usuarioEntity.getVersao());
     }
 }

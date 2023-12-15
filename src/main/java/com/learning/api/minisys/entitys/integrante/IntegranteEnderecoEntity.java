@@ -1,6 +1,5 @@
 package com.learning.api.minisys.entitys.integrante;
 
-import com.learning.api.minisys.dtos.integrante.IntegranteDto;
 import com.learning.api.minisys.dtos.integrante.IntegranteEnderecoDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.integrante.TipoEndereco;
@@ -33,91 +32,91 @@ public class IntegranteEnderecoEntity extends BaseEntity {
 
     @Column(name = "TIPO")
     @Enumerated(EnumType.STRING)
-    private TipoEndereco type;
+    private TipoEndereco tipo;
 
     @Column(name = "INSCRICAO_ESTADUAL")
-    private String stateRegistration;
+    private String inscricaoEstadual;
 
     @Column(name = "CEP")
     private String cep;
 
     @Column(name = "TIPO_LOGRADOURO")
     @Enumerated(EnumType.STRING)
-    private TipoLogradouro addressType;
+    private TipoLogradouro tipoLogradouro;
 
     @Column(name = "LOGRADOURO")
-    private String address;
+    private String logradouro;
 
     @Column(name = "NUMERO")
-    private int number;
+    private int numero;
 
     @Column(name = "COMPLEMENTO")
-    private String complement;
+    private String complemento;
 
     @Column(name = "BAIRRO")
-    private String district;
+    private String bairro;
 
     @Column(name = "MUNICIPIO")
-    private String city;
+    private String municipio;
 
     @Column(name = "UF")
-    private String state;
+    private String estado;
 
     @Column(name = "VERSAO")
-    private LocalDateTime version;
+    private LocalDateTime versao;
 
 
     public IntegranteEnderecoEntity(IntegranteEnderecoDto integranteEnderecoDto) {
         if (integranteEnderecoDto.integrante() != null) {
             this.integrante = new IntegranteEntity(integranteEnderecoDto.integrante());
         }
-        this.type = integranteEnderecoDto.type();
-        this.stateRegistration = integranteEnderecoDto.stateRegistration();
+        this.tipo = integranteEnderecoDto.tipo();
+        this.inscricaoEstadual = integranteEnderecoDto.inscricaoEstadual();
         this.cep = integranteEnderecoDto.cep();
-        this.addressType = integranteEnderecoDto.addressType();
-        this.address = integranteEnderecoDto.address();
-        this.number = integranteEnderecoDto.number();
-        this.complement = integranteEnderecoDto.complement();
-        this.district = integranteEnderecoDto.district();
-        this.city = integranteEnderecoDto.city();
-        this.state = integranteEnderecoDto.state();
-        this.version = LocalDateTime.now();
+        this.tipoLogradouro = integranteEnderecoDto.tipoLogradouro();
+        this.logradouro = integranteEnderecoDto.logradouro();
+        this.numero = integranteEnderecoDto.numero();
+        this.complemento = integranteEnderecoDto.complemento();
+        this.bairro = integranteEnderecoDto.bairro();
+        this.municipio = integranteEnderecoDto.municipio();
+        this.estado = integranteEnderecoDto.estado();
+        this.versao = LocalDateTime.now();
     }
 
     public void atualizarIntegranteEndereco(IntegranteEnderecoDto integranteEnderecoDto) {
         if(integranteEnderecoDto.integrante() != null) {
             this.integrante = new IntegranteEntity(integranteEnderecoDto.integrante());
         }
-        if(integranteEnderecoDto.type() != null) {
-            this.type = integranteEnderecoDto.type();
+        if(integranteEnderecoDto.tipo() != null) {
+            this.tipo = integranteEnderecoDto.tipo();
         }
-        if(integranteEnderecoDto.stateRegistration() != null) {
-            this.stateRegistration = integranteEnderecoDto.stateRegistration();
+        if(integranteEnderecoDto.inscricaoEstadual() != null) {
+            this.inscricaoEstadual = integranteEnderecoDto.inscricaoEstadual();
         }
         if(integranteEnderecoDto.cep() != null) {
             this.cep = integranteEnderecoDto.cep();
         }
-        if(integranteEnderecoDto.addressType() != null) {
-            this.addressType = integranteEnderecoDto.addressType();
+        if(integranteEnderecoDto.tipoLogradouro() != null) {
+            this.tipoLogradouro = integranteEnderecoDto.tipoLogradouro();
         }
-        if(integranteEnderecoDto.address() != null) {
-            this.address = integranteEnderecoDto.address();
+        if(integranteEnderecoDto.logradouro() != null) {
+            this.logradouro = integranteEnderecoDto.logradouro();
         }
-        if(integranteEnderecoDto.number() != 0) {
-            this.number = integranteEnderecoDto.number();
+        if(integranteEnderecoDto.numero() != 0) {
+            this.numero = integranteEnderecoDto.numero();
         }
-        if(integranteEnderecoDto.complement() != null) {
-            this.complement = integranteEnderecoDto.complement();
+        if(integranteEnderecoDto.complemento() != null) {
+            this.complemento = integranteEnderecoDto.complemento();
         }
-        if(integranteEnderecoDto.district() != null) {
-            this.district = integranteEnderecoDto.district();
+        if(integranteEnderecoDto.bairro() != null) {
+            this.bairro = integranteEnderecoDto.bairro();
         }
-        if(integranteEnderecoDto.city() != null) {
-            this.city = integranteEnderecoDto.city();
+        if(integranteEnderecoDto.municipio() != null) {
+            this.municipio = integranteEnderecoDto.municipio();
         }
-        if(integranteEnderecoDto.state() != null) {
-            this.state = integranteEnderecoDto.state();
+        if(integranteEnderecoDto.estado() != null) {
+            this.estado = integranteEnderecoDto.estado();
         }
-        this.version = LocalDateTime.now();
+        this.versao = LocalDateTime.now();
     }
 }

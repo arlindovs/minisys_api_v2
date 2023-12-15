@@ -26,29 +26,29 @@ import java.time.LocalDateTime;
 public class UsuarioGrupoEntity extends BaseEntity {
 
     @Column(name = "DESCRICAO", unique = true)
-    private String description;
+    private String descricao;
 
     @Column(name = "PERFIL")
     @Enumerated(EnumType.STRING)
-    private Role profile;
+    private Role perfil;
 
     @Column(name = "STATUS")
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "EMPRESA")
-    private Long company;
+    private Long empresa;
 
     @Column(name = "VERSAO")
-    private LocalDateTime version;
+    private LocalDateTime versao;
 
 
     public UsuarioGrupoEntity(UsuarioGrupoDto usuarioGrupoDto) {
-        this.description = usuarioGrupoDto.description();
-        this.profile = usuarioGrupoDto.profile();
+        this.descricao = usuarioGrupoDto.descricao();
+        this.perfil = usuarioGrupoDto.perfil();
         this.status = usuarioGrupoDto.status();
-        this.company = usuarioGrupoDto.company();
-        this.version = LocalDateTime.now();
+        this.empresa = usuarioGrupoDto.empresa();
+        this.versao = LocalDateTime.now();
     }
 
     public UsuarioGrupoEntity(NewUsuarioGrupoDto newUsuarioGrupoDto) {
@@ -56,19 +56,19 @@ public class UsuarioGrupoEntity extends BaseEntity {
     }
 
     public void atualizarUsuarioGrupo(UsuarioGrupoDto usuarioGrupoDto) {
-        if(usuarioGrupoDto.description() != null) {
-            this.description = usuarioGrupoDto.description();
+        if(usuarioGrupoDto.descricao() != null) {
+            this.descricao = usuarioGrupoDto.descricao();
         }
-        if(usuarioGrupoDto.profile() != null) {
-            this.profile = usuarioGrupoDto.profile();
+        if(usuarioGrupoDto.perfil() != null) {
+            this.perfil = usuarioGrupoDto.perfil();
         }
         if(usuarioGrupoDto.status() != null) {
             this.status = usuarioGrupoDto.status();
         }
-        if(usuarioGrupoDto.company() != null) {
-            this.company = usuarioGrupoDto.company();
+        if(usuarioGrupoDto.empresa() != null) {
+            this.empresa = usuarioGrupoDto.empresa();
         }
-        this.version = LocalDateTime.now();
+        this.versao = LocalDateTime.now();
     }
 
     public void setStatusAtivo() {

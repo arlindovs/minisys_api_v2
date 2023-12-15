@@ -25,24 +25,24 @@ import java.time.LocalDateTime;
 public class IntegranteGrupoEntity extends BaseEntity {
 
     @Column(name = "DESCRICAO", unique = true)
-    private String description;
+    private String descricao;
 
     @Column(name = "STATUS")
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "EMPRESA")
-    private Long company;
+    private Long empresa;
 
     @Column(name = "VERSAO")
-    private LocalDateTime version;
+    private LocalDateTime versao;
 
 
     public IntegranteGrupoEntity(IntegranteGrupoDto integranteGrupoDto) {
-        this.description = integranteGrupoDto.description();
+        this.descricao = integranteGrupoDto.descricao();
         this.status = integranteGrupoDto.status();
-        this.company = integranteGrupoDto.company();
-        this.version = LocalDateTime.now();
+        this.empresa = integranteGrupoDto.empresa();
+        this.versao = LocalDateTime.now();
     }
 
     public IntegranteGrupoEntity(NewIntegranteGrupoDto newIntegranteGrupoDto) {
@@ -50,16 +50,16 @@ public class IntegranteGrupoEntity extends BaseEntity {
     }
 
     public void atualizarIntegranteGrupo(IntegranteGrupoDto integranteGrupoDto) {
-        if(integranteGrupoDto.description() != null) {
-            this.description = integranteGrupoDto.description();
+        if(integranteGrupoDto.descricao() != null) {
+            this.descricao = integranteGrupoDto.descricao();
         }
         if(integranteGrupoDto.status() != null) {
             this.status = integranteGrupoDto.status();
         }
-        if(integranteGrupoDto.company() != null) {
-            this.company = integranteGrupoDto.company();
+        if(integranteGrupoDto.empresa() != null) {
+            this.empresa = integranteGrupoDto.empresa();
         }
-        this.version = LocalDateTime.now();
+        this.versao = LocalDateTime.now();
     }
 
     public void setStatusAtivo() {

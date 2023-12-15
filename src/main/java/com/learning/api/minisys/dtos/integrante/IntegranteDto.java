@@ -4,7 +4,6 @@ import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
 import com.learning.api.minisys.enums.integrante.TipoIntegrante;
-import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 
@@ -19,25 +18,25 @@ public record IntegranteDto(
         @Enumerated
         TipoIntegrante tipoIntegrante,
 
-        String name,
+        String nome,
 
-        String secondName,
+        String segundoNome,
 
-        String fone,
+        String telefone,
 
         String email,
 
-        TipoDocumento documentType,
+        TipoDocumento tipoDocumento,
 
-        String document,
+        String documento,
 
-        LocalDateTime creationDate,
+        LocalDateTime dataCriacao,
 
         @Enumerated
         Status status,
 
         @NotNull(message = "O campo empresa é obrigatório")
-        Long company,
+        Long empresa,
 
         LocalDateTime version
 ) {
@@ -47,15 +46,15 @@ public record IntegranteDto(
                 integranteEntity.getIntegranteGrupo() != null ?
                         new NewIntegranteGrupoDto(integranteEntity.getIntegranteGrupo().getCODIGO()) : null,
                 integranteEntity.getTipoIntegrante(),
-                integranteEntity.getName(),
-                integranteEntity.getSecondName(),
-                integranteEntity.getFone(),
+                integranteEntity.getNome(),
+                integranteEntity.getSegundoNome(),
+                integranteEntity.getTelefone(),
                 integranteEntity.getEmail(),
-                integranteEntity.getDocumentType(),
-                integranteEntity.getDocument(),
-                integranteEntity.getCreationDate(),
+                integranteEntity.getTipoDocumento(),
+                integranteEntity.getDocumento(),
+                integranteEntity.getDataCriacao(),
                 integranteEntity.getStatus(),
-                integranteEntity.getCompany(),
-                integranteEntity.getVersion());
+                integranteEntity.getEmpresa(),
+                integranteEntity.getVersao());
     }
 }

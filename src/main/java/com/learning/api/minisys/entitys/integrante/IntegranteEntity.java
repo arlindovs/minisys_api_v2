@@ -6,7 +6,6 @@ import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
 import com.learning.api.minisys.enums.integrante.TipoIntegrante;
-import com.learning.api.minisys.repositories.integrante.IntegranteGrupoRepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -38,36 +37,36 @@ public class IntegranteEntity extends BaseEntity {
     TipoIntegrante tipoIntegrante;
 
     @Column(name = "NOME")
-    private String name;
+    private String nome;
 
     @Column(name = "SEGUNDO_NOME")
-    private String secondName;
+    private String segundoNome;
 
     @Column(name = "TELEFONE")
-    private String fone;
+    private String telefone;
 
     @Column(name = "EMAIL")
     private String email;
 
     @Column(name = "TIPO_DOCUMENTO")
     @Enumerated(EnumType.STRING)
-    private TipoDocumento documentType;
+    private TipoDocumento tipoDocumento;
 
     @Column(name = "DOCUMENTO", unique = true)
-    private String document;
+    private String documento;
 
     @Column(name = "DATA_CRIACAO")
-    private LocalDateTime creationDate;
+    private LocalDateTime dataCriacao;
 
     @Column(name = "STATUS")
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "EMPRESA")
-    private Long company;
+    private Long empresa;
 
     @Column(name = "VERSAO")
-    private LocalDateTime version;
+    private LocalDateTime versao;
 
 
     public IntegranteEntity(IntegranteDto dadosIntegrante) {
@@ -75,16 +74,16 @@ public class IntegranteEntity extends BaseEntity {
             this.integranteGrupo = new IntegranteGrupoEntity(dadosIntegrante.integranteGrupo());
         }
         this.tipoIntegrante = dadosIntegrante.tipoIntegrante();
-        this.name = dadosIntegrante.name();
-        this.secondName = dadosIntegrante.secondName();
-        this.fone = dadosIntegrante.fone();
+        this.nome = dadosIntegrante.nome();
+        this.segundoNome = dadosIntegrante.segundoNome();
+        this.telefone = dadosIntegrante.telefone();
         this.email = dadosIntegrante.email();
-        this.documentType = dadosIntegrante.documentType();
-        this.document = dadosIntegrante.document();
-        this.creationDate = LocalDateTime.now();
+        this.tipoDocumento = dadosIntegrante.tipoDocumento();
+        this.documento = dadosIntegrante.documento();
+        this.dataCriacao = LocalDateTime.now();
         this.status = dadosIntegrante.status();
-        this.company = dadosIntegrante.company();
-        this.version = LocalDateTime.now();
+        this.empresa = dadosIntegrante.empresa();
+        this.versao = LocalDateTime.now();
     }
 
     public IntegranteEntity(NewIntegranteDto integrante) {
@@ -98,31 +97,31 @@ public class IntegranteEntity extends BaseEntity {
         if(dadosIntegrante.tipoIntegrante() != null) {
             this.tipoIntegrante = dadosIntegrante.tipoIntegrante();
         }
-        if (dadosIntegrante.name() != null) {
-            this.name = dadosIntegrante.name();
+        if (dadosIntegrante.nome() != null) {
+            this.nome = dadosIntegrante.nome();
         }
-        if (dadosIntegrante.secondName() != null) {
-            this.secondName = dadosIntegrante.secondName();
+        if (dadosIntegrante.segundoNome() != null) {
+            this.segundoNome = dadosIntegrante.segundoNome();
         }
-        if (dadosIntegrante.fone() != null) {
-            this.fone = dadosIntegrante.fone();
+        if (dadosIntegrante.telefone() != null) {
+            this.telefone = dadosIntegrante.telefone();
         }
         if (dadosIntegrante.email() != null) {
             this.email = dadosIntegrante.email();
         }
-        if (dadosIntegrante.documentType() != null) {
-            this.documentType = dadosIntegrante.documentType();
+        if (dadosIntegrante.tipoDocumento() != null) {
+            this.tipoDocumento = dadosIntegrante.tipoDocumento();
         }
-        if (dadosIntegrante.document() != null) {
-            this.document = dadosIntegrante.document();
+        if (dadosIntegrante.documento() != null) {
+            this.documento = dadosIntegrante.documento();
         }
         if (dadosIntegrante.status() != null) {
             this.status = dadosIntegrante.status();
         }
-        if (dadosIntegrante.company() != null) {
-            this.company = dadosIntegrante.company();
+        if (dadosIntegrante.empresa() != null) {
+            this.empresa = dadosIntegrante.empresa();
         }
-        this.version = LocalDateTime.now();
+        this.versao = LocalDateTime.now();
     }
 
     public void setStatusAtivo() {

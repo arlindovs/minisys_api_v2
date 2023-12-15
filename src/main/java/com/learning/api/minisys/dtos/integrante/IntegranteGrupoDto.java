@@ -7,29 +7,28 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public record IntegranteGrupoDto(
 
         Long CODIGO,
 
         @NotBlank(message = "O campo descrição é obrigatório")
-        String description,
+        String descricao,
 
         @Enumerated
         Status status,
 
         @NotNull(message = "O campo empresa é obrigatório")
-        Long company,
+        Long empresa,
 
         LocalDateTime version
 ) {
 
     public IntegranteGrupoDto(IntegranteGrupoEntity integranteGrupoEntity) {
         this(integranteGrupoEntity.getCODIGO(),
-                integranteGrupoEntity.getDescription(),
+                integranteGrupoEntity.getDescricao(),
                 integranteGrupoEntity.getStatus(),
-                integranteGrupoEntity.getCompany(),
-                integranteGrupoEntity.getVersion());
+                integranteGrupoEntity.getEmpresa(),
+                integranteGrupoEntity.getVersao());
     }
 }

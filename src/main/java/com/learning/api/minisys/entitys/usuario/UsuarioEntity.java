@@ -1,8 +1,6 @@
 package com.learning.api.minisys.entitys.usuario;
 
-import com.learning.api.minisys.dtos.integrante.IntegranteDto;
 import com.learning.api.minisys.dtos.usuario.UsuarioDto;
-import com.learning.api.minisys.dtos.usuario.UsuarioGrupoDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
@@ -53,10 +51,10 @@ public class UsuarioEntity extends BaseEntity implements UserDetails {
     private Status status;
 
     @Column(name = "EMPRESA")
-    private Long company;
+    private Long empresa;
 
     @Column(name = "VERSAO")
-    private LocalDateTime version;
+    private LocalDateTime versao;
 
     public UsuarioEntity(UsuarioDto dadosUsuario) {
         if (dadosUsuario.usuarioGrupo() != null) {
@@ -68,8 +66,8 @@ public class UsuarioEntity extends BaseEntity implements UserDetails {
         this.login = dadosUsuario.login();
         this.password = new BCryptPasswordEncoder().encode(dadosUsuario.password());
         this.status = dadosUsuario.status();
-        this.company = dadosUsuario.company();
-        this.version = LocalDateTime.now();
+        this.empresa = dadosUsuario.empresa();
+        this.versao = LocalDateTime.now();
     }
 
     public void atualizarUsuario(UsuarioDto dadosUsuario) {
@@ -88,10 +86,10 @@ public class UsuarioEntity extends BaseEntity implements UserDetails {
         if (dadosUsuario.status() != null) {
             this.status = dadosUsuario.status();
         }
-        if (dadosUsuario.company() != null) {
-            this.company = dadosUsuario.company();
+        if (dadosUsuario.empresa() != null) {
+            this.empresa = dadosUsuario.empresa();
         }
-        this.version = LocalDateTime.now();
+        this.versao = LocalDateTime.now();
     }
 
     public void setStatusAtivo() {
@@ -109,7 +107,7 @@ public class UsuarioEntity extends BaseEntity implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // Verifica se o usuário pertence ao grupo de perfil "ADMIN"
-        if (this.usuarioGrupo.getProfile().equals("ADMIN")) {
+        if (this.usuarioGrupo.getPerfil().equals("ADMIN")) {
             // Se pertencer, concede as autoridades ROLE_ADMIN e ROLE_USER
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_USER"));

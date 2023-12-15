@@ -14,44 +14,44 @@ public record IntegranteEnderecoDto(
         NewIntegranteDto integrante,
 
         @Enumerated
-        TipoEndereco type,
+        TipoEndereco tipo,
 
-        String stateRegistration,
+        String inscricaoEstadual,
 
         String cep,
 
         @Enumerated
-        TipoLogradouro addressType,
+        TipoLogradouro tipoLogradouro,
 
-        String address,
+        String logradouro,
 
-        int number,
+        int numero,
 
-        String complement,
+        String complemento,
 
-        String district,
+        String bairro,
 
-        String city,
+        String municipio,
 
-        String state,
+        String estado,
 
-        LocalDateTime version
+        LocalDateTime versao
 ) {
 
     public IntegranteEnderecoDto(IntegranteEnderecoEntity integranteEnderecoEntity) {
         this(integranteEnderecoEntity.getCODIGO(),
                 integranteEnderecoEntity.getIntegrante() != null ?
                         new NewIntegranteDto(integranteEnderecoEntity.getIntegrante().getCODIGO()) : null,
-                integranteEnderecoEntity.getType(),
-                integranteEnderecoEntity.getStateRegistration(),
+                integranteEnderecoEntity.getTipo(),
+                integranteEnderecoEntity.getInscricaoEstadual(),
                 integranteEnderecoEntity.getCep(),
-                integranteEnderecoEntity.getAddressType(),
-                integranteEnderecoEntity.getAddress(),
-                integranteEnderecoEntity.getNumber(),
-                integranteEnderecoEntity.getComplement(),
-                integranteEnderecoEntity.getDistrict(),
-                integranteEnderecoEntity.getCity(),
-                integranteEnderecoEntity.getState(),
-                integranteEnderecoEntity.getVersion());
+                integranteEnderecoEntity.getTipoLogradouro(),
+                integranteEnderecoEntity.getLogradouro(),
+                integranteEnderecoEntity.getNumero(),
+                integranteEnderecoEntity.getComplemento(),
+                integranteEnderecoEntity.getBairro(),
+                integranteEnderecoEntity.getMunicipio(),
+                integranteEnderecoEntity.getEstado(),
+                integranteEnderecoEntity.getVersao());
     }
 }
