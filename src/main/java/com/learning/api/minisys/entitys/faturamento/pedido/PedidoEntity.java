@@ -112,8 +112,8 @@ public class PedidoEntity extends BaseEntity {
         this.totalDesconto = pedidoDto.totalDesconto();
         this.totalAcrescimo = pedidoDto.totalAcrescimo();
         this.total = pedidoDto.total();
-        this.status = pedidoDto.status();
         this.empresa = pedidoDto.empresa();
+        this.status = Status.ATIVO;
         this.versao = LocalDateTime.now();
     }
 
@@ -170,12 +170,18 @@ public class PedidoEntity extends BaseEntity {
         if (pedidoDto.total() != null) {
             this.total = pedidoDto.total();
         }
-        if (pedidoDto.status() != null) {
-            this.status = pedidoDto.status();
-        }
         if (pedidoDto.empresa() != null) {
             this.empresa = pedidoDto.empresa();
         }
         this.versao = LocalDateTime.now();
+    }
+
+
+    public void setStatusAtivo() {
+        this.status = Status.ATIVO;
+    }
+
+    public void setStatusInativo() {
+        this.status = Status.DESATIVADO;
     }
 }

@@ -119,8 +119,8 @@ public class OrdemServicoEntity extends BaseEntity {
         this.totalDesconto = ordemServicoDto.totalDesconto();
         this.totalAcrescimo = ordemServicoDto.totalAcrescimo();
         this.total = ordemServicoDto.total();
-        this.status = ordemServicoDto.status();
         this.empresa = ordemServicoDto.empresa();
+        this.status = Status.ATIVO;
         this.versao = LocalDateTime.now();
     }
 
@@ -183,12 +183,18 @@ public class OrdemServicoEntity extends BaseEntity {
         if (ordemServicoDto.total() != null) {
             this.total = ordemServicoDto.total();
         }
-        if (ordemServicoDto.status() != null) {
-            this.status = ordemServicoDto.status();
-        }
         if (ordemServicoDto.empresa() != null) {
             this.empresa = ordemServicoDto.empresa();
         }
         this.versao = LocalDateTime.now();
+    }
+
+
+    public void setStatusAtivo() {
+        this.status = Status.ATIVO;
+    }
+
+    public void setStatusInativo() {
+        this.status = Status.DESATIVADO;
     }
 }
