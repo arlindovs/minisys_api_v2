@@ -121,7 +121,7 @@ public class OrdemServicoEntity extends BaseEntity {
         this.total = ordemServicoDto.total();
         this.status = ordemServicoDto.status();
         this.empresa = ordemServicoDto.empresa();
-        this.versao = ordemServicoDto.versao();
+        this.versao = LocalDateTime.now();
     }
 
     public OrdemServicoEntity(NewOrdemServicoDto ordemServico){
