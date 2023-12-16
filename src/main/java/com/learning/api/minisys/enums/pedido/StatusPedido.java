@@ -11,13 +11,13 @@ public enum StatusPedido {
     FINALIZADO("Finalizado");
 
 
-    private String status;
+    private String descricao;
 
-    StatusPedido(String status) {
-        this.status = status;
+    StatusPedido(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getStatus() {
-        return status;
+    public String getDescricao() {
+        return descricao;
     }
 }

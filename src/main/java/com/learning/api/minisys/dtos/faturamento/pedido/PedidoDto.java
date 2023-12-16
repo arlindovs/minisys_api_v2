@@ -5,6 +5,7 @@ import com.learning.api.minisys.entitys.faturamento.pedido.PedidoEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.pedido.FinalidadePedido;
 import com.learning.api.minisys.enums.pedido.StatusPedido;
+import com.learning.api.minisys.enums.pedido.TipoMovimentacaoPedido;
 import com.learning.api.minisys.enums.pedido.TipoPedido;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -16,6 +17,8 @@ public record PedidoDto(
         Long CODIGO,
         @Enumerated
         TipoPedido tipo,
+        @Enumerated
+        TipoMovimentacaoPedido tipoMovimentacao,
         @Enumerated
         FinalidadePedido finalidade,
         @Enumerated
@@ -41,6 +44,7 @@ public record PedidoDto(
     public PedidoDto(PedidoEntity pedidoEntity) {
         this(pedidoEntity.getCODIGO(),
                 pedidoEntity.getTipo(),
+                pedidoEntity.getTipoMovimentacao(),
                 pedidoEntity.getFinalidade(),
                 pedidoEntity.getStatusPedido(),
                 pedidoEntity.getNumero(),

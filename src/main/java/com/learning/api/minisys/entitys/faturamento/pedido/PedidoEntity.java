@@ -7,6 +7,7 @@ import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.pedido.FinalidadePedido;
 import com.learning.api.minisys.enums.pedido.StatusPedido;
+import com.learning.api.minisys.enums.pedido.TipoMovimentacaoPedido;
 import com.learning.api.minisys.enums.pedido.TipoPedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +34,10 @@ public class PedidoEntity extends BaseEntity {
     @Column(name = "TIPO")
     @Enumerated(EnumType.STRING)
     private TipoPedido tipo;
+
+    @Column(name = "TIPO_MOVIMENTACAO")
+    @Enumerated(EnumType.STRING)
+    private TipoMovimentacaoPedido tipoMovimentacao;
 
     @Column(name = "FINALIDADE")
     @Enumerated(EnumType.STRING)
@@ -91,6 +96,7 @@ public class PedidoEntity extends BaseEntity {
 
     public PedidoEntity(PedidoDto pedidoDto) {
         this.tipo = pedidoDto.tipo();
+        this.tipoMovimentacao = pedidoDto.tipoMovimentacao();
         this.finalidade = pedidoDto.finalidade();
         this.statusPedido = pedidoDto.statusPedido();
         this.numero = pedidoDto.numero();
@@ -118,6 +124,9 @@ public class PedidoEntity extends BaseEntity {
     public void atualizarPedido(PedidoDto pedidoDto) {
         if (pedidoDto.tipo() != null) {
             this.tipo = pedidoDto.tipo();
+        }
+        if (pedidoDto.tipoMovimentacao() != null) {
+            this.tipoMovimentacao = pedidoDto.tipoMovimentacao();
         }
         if (pedidoDto.finalidade() != null) {
             this.finalidade = pedidoDto.finalidade();
