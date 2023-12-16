@@ -1,6 +1,5 @@
 package com.learning.api.minisys.dtos.faturamento.pedido;
 
-import com.learning.api.minisys.dtos.cadastro.integrante.IntegranteDto;
 import com.learning.api.minisys.dtos.cadastro.integrante.NewIntegranteDto;
 import com.learning.api.minisys.entitys.faturamento.pedido.PedidoEntity;
 import com.learning.api.minisys.enums.Status;
