@@ -1,5 +1,6 @@
 package com.learning.api.minisys.entitys.faturamento.pedido;
 
+import com.learning.api.minisys.dtos.faturamento.pedido.PedidoDetalheDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.item.ItemEntity;
 import com.learning.api.minisys.entitys.cadastro.item.UnidadeMedidaEntity;
@@ -66,4 +67,25 @@ public class PedidoDetalheEntity extends BaseEntity {
 
     @Column(name = "VALOR_TOTAL")
     private Double valorTotal;
+
+
+    public PedidoDetalheEntity(PedidoDetalheDto pedidoDetalheDto) {
+        this.pedido = pedidoDetalheDto.pedido() != null ?
+                new PedidoEntity(pedidoDetalheDto.pedido()) : null;
+        this.item = pedidoDetalheDto.item() != null ?
+                new ItemEntity(pedidoDetalheDto.item()) : null;
+        this.cancelado = pedidoDetalheDto.cancelado();
+        this.ordem = pedidoDetalheDto.ordem();
+        this.descricao = pedidoDetalheDto.descricao();
+        this.unidadeMedida = pedidoDetalheDto.unidadeMedida() != null ?
+                new UnidadeMedidaEntity(pedidoDetalheDto.unidadeMedida()) : null;
+        this.quantidade = pedidoDetalheDto.quantidade();
+        this.quantidadeDevolvida = pedidoDetalheDto.quantidadeDevolvida();
+        this.quantidadeFaturada = pedidoDetalheDto.quantidadeFaturada();
+        this.quantidadeEntregue = pedidoDetalheDto.quantidadeEntregue();
+        this.valorUnitario = pedidoDetalheDto.valorUnitario();
+        this.valorDesconto = pedidoDetalheDto.valorDesconto();
+        this.valorAcrescimo = pedidoDetalheDto.valorAcrescimo();
+        this.valorTotal = pedidoDetalheDto.valorTotal();
+    }
 }
