@@ -52,6 +52,9 @@ public class PedidoDetalheEntity extends BaseEntity {
     @Column(name = "QUANTIDADE_FATURADA")
     private Double quantidadeFaturada;
 
+    @Column(name = "QUANTIDADE_ENTREGUE")
+    private Double quantidadeEntregue;
+
     @Column(name = "VALOR_UNITARIO")
     private Double valorUnitario;
 
