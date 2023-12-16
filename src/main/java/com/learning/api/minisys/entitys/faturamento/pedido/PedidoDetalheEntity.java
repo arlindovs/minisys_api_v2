@@ -90,7 +90,7 @@ public class PedidoDetalheEntity extends BaseEntity {
         this.valorTotal = pedidoDetalheDto.valorTotal();
     }
 
-    public PedidoDetalheEntity(NewPedidoDetalheDto pedidoDetalheDto) {
+    public PedidoDetalheEntity(NewPedidoDetalheDto newPedidoDetalheDto) {
         super();
     }
 
