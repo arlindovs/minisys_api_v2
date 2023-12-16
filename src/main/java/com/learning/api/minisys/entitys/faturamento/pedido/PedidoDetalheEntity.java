@@ -1,5 +1,6 @@
 package com.learning.api.minisys.entitys.faturamento.pedido;
 
+import com.learning.api.minisys.dtos.faturamento.pedido.NewPedidoDetalheDto;
 import com.learning.api.minisys.dtos.faturamento.pedido.PedidoDetalheDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.item.ItemEntity;
@@ -35,7 +36,7 @@ public class PedidoDetalheEntity extends BaseEntity {
     private Boolean cancelado;
 
     @Column(name = "ORDEM")
-    private int ordem;
+    private Long ordem;
 
     @Column(name = "DESCRICAO")
     private String descricao;
@@ -87,5 +88,54 @@ public class PedidoDetalheEntity extends BaseEntity {
         this.valorDesconto = pedidoDetalheDto.valorDesconto();
         this.valorAcrescimo = pedidoDetalheDto.valorAcrescimo();
         this.valorTotal = pedidoDetalheDto.valorTotal();
+    }
+
+    public PedidoDetalheEntity(NewPedidoDetalheDto pedidoDetalheDto) {
+        super();
+    }
+
+    public void atualizarPedidoDetalhe(PedidoDetalheDto pedidoDetalheDto) {
+        if (pedidoDetalheDto.pedido() != null) {
+            this.pedido = new PedidoEntity(pedidoDetalheDto.pedido());
+        }
+        if (pedidoDetalheDto.item() != null) {
+            this.item = new ItemEntity(pedidoDetalheDto.item());
+        }
+        if (pedidoDetalheDto.cancelado() != null) {
+            this.cancelado = pedidoDetalheDto.cancelado();
+        }
+        if (pedidoDetalheDto.ordem() != null) {
+            this.ordem = pedidoDetalheDto.ordem();
+        }
+        if (pedidoDetalheDto.descricao() != null) {
+            this.descricao = pedidoDetalheDto.descricao();
+        }
+        if (pedidoDetalheDto.unidadeMedida() != null) {
+            this.unidadeMedida = new UnidadeMedidaEntity(pedidoDetalheDto.unidadeMedida());
+        }
+        if (pedidoDetalheDto.quantidade() != null) {
+            this.quantidade = pedidoDetalheDto.quantidade();
+        }
+        if (pedidoDetalheDto.quantidadeDevolvida() != null) {
+            this.quantidadeDevolvida = pedidoDetalheDto.quantidadeDevolvida();
+        }
+        if (pedidoDetalheDto.quantidadeFaturada() != null) {
+            this.quantidadeFaturada = pedidoDetalheDto.quantidadeFaturada();
+        }
+        if (pedidoDetalheDto.quantidadeEntregue() != null) {
+            this.quantidadeEntregue = pedidoDetalheDto.quantidadeEntregue();
+        }
+        if (pedidoDetalheDto.valorUnitario() != null) {
+            this.valorUnitario = pedidoDetalheDto.valorUnitario();
+        }
+        if (pedidoDetalheDto.valorDesconto() != null) {
+            this.valorDesconto = pedidoDetalheDto.valorDesconto();
+        }
+        if (pedidoDetalheDto.valorAcrescimo() != null) {
+            this.valorAcrescimo = pedidoDetalheDto.valorAcrescimo();
+        }
+        if (pedidoDetalheDto.valorTotal() != null) {
+            this.valorTotal = pedidoDetalheDto.valorTotal();
+        }
     }
 }

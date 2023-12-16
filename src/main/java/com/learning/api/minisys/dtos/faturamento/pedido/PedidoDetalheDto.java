@@ -11,7 +11,7 @@ public record PedidoDetalheDto(
         NewPedidoDto pedido,
         NewItemDto item,
         Boolean cancelado,
-        int ordem,
+        Long ordem,
         @NotBlank(message = "O campo descrição é obrigatório")
         String descricao,
         NewUnidadeMedidaDto unidadeMedida,
