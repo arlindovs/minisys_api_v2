@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,15 +30,15 @@ public class OrigemNotaFaturaEntity extends BaseEntity {
     private LocalDateTime dataCriacao;
 
     @JoinColumn(name = "PEDIDO_DETALHE")
-    @ManyToMany
+    @ManyToOne
     private PedidoDetalheEntity pedidoDetalhe;
 
     @JoinColumn(name = "ORDEM_SERVICO_DETALHE")
-    @ManyToMany
+    @ManyToOne
     private OrdemServicoDetalheEntity ordemServicoDetalhe;
 
     @JoinColumn(name = "NOTA_FISCAL_DETALHE")
-    @ManyToMany
+    @ManyToOne
     private NotaFiscalDetalheEntity notaFiscalDetalhe;
 
 
