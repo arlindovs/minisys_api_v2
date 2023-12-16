@@ -1,5 +1,6 @@
 package com.learning.api.minisys.entitys.faturamento.ordem_servico;
 
+import com.learning.api.minisys.dtos.faturamento.ordem_servico.NewOrdemServicoDto;
 import com.learning.api.minisys.dtos.faturamento.ordem_servico.OrdemServicoDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
@@ -121,5 +122,73 @@ public class OrdemServicoEntity extends BaseEntity {
         this.status = ordemServicoDto.status();
         this.empresa = ordemServicoDto.empresa();
         this.versao = ordemServicoDto.versao();
+    }
+
+    public OrdemServicoEntity(NewOrdemServicoDto ordemServico){
+        super();
+    }
+
+    public void atualizarOrdemServico(OrdemServicoDto ordemServicoDto) {
+        if (ordemServicoDto.tipoMovimentacao() != null) {
+            this.tipoMovimentacao = ordemServicoDto.tipoMovimentacao();
+        }
+        if (ordemServicoDto.finalidade() != null) {
+            this.finalidade = ordemServicoDto.finalidade();
+        }
+        if (ordemServicoDto.statusOrdem() != null) {
+            this.statusOrdem = ordemServicoDto.statusOrdem();
+        }
+        if (ordemServicoDto.numero() != null) {
+            this.numero = ordemServicoDto.numero();
+        }
+        if (ordemServicoDto.controle() != null) {
+            this.controle = ordemServicoDto.controle();
+        }
+        if (ordemServicoDto.dataEmissao() != null) {
+            this.dataEmissao = ordemServicoDto.dataEmissao();
+        }
+        if (ordemServicoDto.dataEntrega() != null) {
+            this.dataEntrega = ordemServicoDto.dataEntrega();
+        }
+        if (ordemServicoDto.dataFatura() != null) {
+            this.dataFatura = ordemServicoDto.dataFatura();
+        }
+        if (ordemServicoDto.dataValidade() != null) {
+            this.dataValidade = ordemServicoDto.dataValidade();
+        }
+        if (ordemServicoDto.dataPrevisao() != null) {
+            this.dataPrevisao = ordemServicoDto.dataPrevisao();
+        }
+        if (ordemServicoDto.dataServicoInicio() != null) {
+            this.dataServicoInicio = ordemServicoDto.dataServicoInicio();
+        }
+        if (ordemServicoDto.dataServicoFim() != null) {
+            this.dataServicoFim = ordemServicoDto.dataServicoFim();
+        }
+        if (ordemServicoDto.integrante() != null) {
+            this.integrante = new IntegranteEntity(ordemServicoDto.integrante());
+        }
+        if (ordemServicoDto.totalProduto() != null) {
+            this.totalProduto = ordemServicoDto.totalProduto();
+        }
+        if (ordemServicoDto.totalServico() != null) {
+            this.totalServico = ordemServicoDto.totalServico();
+        }
+        if (ordemServicoDto.totalDesconto() != null) {
+            this.totalDesconto = ordemServicoDto.totalDesconto();
+        }
+        if (ordemServicoDto.totalAcrescimo() != null) {
+            this.totalAcrescimo = ordemServicoDto.totalAcrescimo();
+        }
+        if (ordemServicoDto.total() != null) {
+            this.total = ordemServicoDto.total();
+        }
+        if (ordemServicoDto.status() != null) {
+            this.status = ordemServicoDto.status();
+        }
+        if (ordemServicoDto.empresa() != null) {
+            this.empresa = ordemServicoDto.empresa();
+        }
+        this.versao = LocalDateTime.now();
     }
 }
