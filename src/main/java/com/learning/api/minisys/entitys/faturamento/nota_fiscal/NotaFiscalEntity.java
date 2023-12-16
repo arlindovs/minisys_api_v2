@@ -118,7 +118,7 @@ public class NotaFiscalEntity extends BaseEntity {
         this.total = notaFiscalDto.total();
         this.xml = notaFiscalDto.xml();
         this.empresa = notaFiscalDto.empresa();
-        this.status = Status.ATIVO;
+        this.status = Status.NORMAL;
         this.versao = LocalDateTime.now();
     }
 
@@ -185,11 +185,11 @@ public class NotaFiscalEntity extends BaseEntity {
     }
 
 
-    public void setStatusAtivo() {
-        this.status = Status.ATIVO;
+    public void setStatusNormal() {
+        this.status = Status.NORMAL;
     }
 
-    public void setStatusInativo() {
-        this.status = Status.DESATIVADO;
+    public void setStatusCancelado() {
+        this.status = Status.CANCELADO;
     }
 }

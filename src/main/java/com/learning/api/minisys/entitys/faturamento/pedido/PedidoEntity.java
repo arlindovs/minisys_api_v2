@@ -113,7 +113,7 @@ public class PedidoEntity extends BaseEntity {
         this.totalAcrescimo = pedidoDto.totalAcrescimo();
         this.total = pedidoDto.total();
         this.empresa = pedidoDto.empresa();
-        this.status = Status.ATIVO;
+        this.status = Status.NORMAL;
         this.versao = LocalDateTime.now();
     }
 
@@ -177,11 +177,11 @@ public class PedidoEntity extends BaseEntity {
     }
 
 
-    public void setStatusAtivo() {
-        this.status = Status.ATIVO;
+    public void setStatusNormal() {
+        this.status = Status.NORMAL;
     }
 
-    public void setStatusInativo() {
-        this.status = Status.DESATIVADO;
+    public void setStatusCancelado() {
+        this.status = Status.CANCELADO;
     }
 }

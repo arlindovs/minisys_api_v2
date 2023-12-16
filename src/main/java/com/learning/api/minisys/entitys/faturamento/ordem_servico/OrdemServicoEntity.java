@@ -120,7 +120,7 @@ public class OrdemServicoEntity extends BaseEntity {
         this.totalAcrescimo = ordemServicoDto.totalAcrescimo();
         this.total = ordemServicoDto.total();
         this.empresa = ordemServicoDto.empresa();
-        this.status = Status.ATIVO;
+        this.status = Status.NORMAL;
         this.versao = LocalDateTime.now();
     }
 
@@ -190,11 +190,11 @@ public class OrdemServicoEntity extends BaseEntity {
     }
 
 
-    public void setStatusAtivo() {
-        this.status = Status.ATIVO;
+    public void setStatusNormal() {
+        this.status = Status.NORMAL;
     }
 
-    public void setStatusInativo() {
-        this.status = Status.DESATIVADO;
+    public void setStatusCancelado() {
+        this.status = Status.CANCELADO;
     }
 }
