@@ -1,5 +1,6 @@
 package com.learning.api.minisys.entitys.faturamento.ordem_servico;
 
+import com.learning.api.minisys.dtos.faturamento.ordem_servico.OrdemServicoDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
@@ -95,4 +96,30 @@ public class OrdemServicoEntity extends BaseEntity {
 
     @Column(name = "VERSAO")
     private LocalDateTime versao;
+
+
+    public OrdemServicoEntity(OrdemServicoDto ordemServicoDto) {
+        this.tipoMovimentacao = ordemServicoDto.tipoMovimentacao();
+        this.finalidade = ordemServicoDto.finalidade();
+        this.statusOrdem = ordemServicoDto.statusOrdem();
+        this.numero = ordemServicoDto.numero();
+        this.controle = ordemServicoDto.controle();
+        this.dataEmissao = ordemServicoDto.dataEmissao();
+        this.dataEntrega = ordemServicoDto.dataEntrega();
+        this.dataFatura = ordemServicoDto.dataFatura();
+        this.dataValidade = ordemServicoDto.dataValidade();
+        this.dataPrevisao = ordemServicoDto.dataPrevisao();
+        this.dataServicoInicio = ordemServicoDto.dataServicoInicio();
+        this.dataServicoFim = ordemServicoDto.dataServicoFim();
+        this.integrante = ordemServicoDto.integrante() != null ?
+                new IntegranteEntity(ordemServicoDto.integrante()) : null;
+        this.totalProduto = ordemServicoDto.totalProduto();
+        this.totalServico = ordemServicoDto.totalServico();
+        this.totalDesconto = ordemServicoDto.totalDesconto();
+        this.totalAcrescimo = ordemServicoDto.totalAcrescimo();
+        this.total = ordemServicoDto.total();
+        this.status = ordemServicoDto.status();
+        this.empresa = ordemServicoDto.empresa();
+        this.versao = ordemServicoDto.versao();
+    }
 }
