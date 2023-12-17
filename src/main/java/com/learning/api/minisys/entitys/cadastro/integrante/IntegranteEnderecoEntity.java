@@ -1,30 +1,34 @@
 package com.learning.api.minisys.entitys.cadastro.integrante;
 
 import com.learning.api.minisys.dtos.cadastro.integrante.IntegranteEnderecoDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.integrante.TipoEndereco;
 import com.learning.api.minisys.enums.integrante.TipoLogradouro;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "integrante_endereco")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IntegranteEnderecoEntity extends BaseEntity {
+public class IntegranteEnderecoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @ManyToOne
     @JoinColumn(name = "INTEGRANTE")

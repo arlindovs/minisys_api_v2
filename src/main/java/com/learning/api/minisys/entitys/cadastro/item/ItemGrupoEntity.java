@@ -2,27 +2,31 @@ package com.learning.api.minisys.entitys.cadastro.item;
 
 import com.learning.api.minisys.dtos.cadastro.item.ItemGrupoDto;
 import com.learning.api.minisys.dtos.cadastro.item.NewItemGrupoDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "item_grupo")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemGrupoEntity extends BaseEntity {
+public class ItemGrupoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "DESCRICAO", unique = true)
     private String descricao;
@@ -44,9 +48,7 @@ public class ItemGrupoEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public ItemGrupoEntity(NewItemGrupoDto newItemGrupoDto) {
-        super();
-    }
+    public ItemGrupoEntity(NewItemGrupoDto newItemGrupoDto) {}
 
     public void atualizarItemGrupo(ItemGrupoDto itemGrupoDto) {
         if(itemGrupoDto.descricao() != null) {

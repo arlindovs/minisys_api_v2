@@ -2,31 +2,35 @@ package com.learning.api.minisys.entitys.faturamento.nota_fiscal;
 
 import com.learning.api.minisys.dtos.faturamento.nota_fiscal.NewNotaFiscalDetalheDto;
 import com.learning.api.minisys.dtos.faturamento.nota_fiscal.NotaFiscalDetalheDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.item.ItemEntity;
 import com.learning.api.minisys.entitys.cadastro.item.PerfilFiscalEntity;
-import com.learning.api.minisys.enums.item.TipoItem;
 import com.learning.api.minisys.entitys.cadastro.item.UnidadeMedidaEntity;
+import com.learning.api.minisys.enums.item.TipoItem;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "nota_fiscal_detalhe")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotaFiscalDetalheEntity extends BaseEntity {
+public class NotaFiscalDetalheEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @JoinColumn(name = "NOTA_FISCAL")
     @OneToOne
@@ -105,9 +109,7 @@ public class NotaFiscalDetalheEntity extends BaseEntity {
         this.valorTotal = notaFiscalDetalheDto.valorTotal();
     }
 
-    public NotaFiscalDetalheEntity(NewNotaFiscalDetalheDto newNotaFiscalDetalheDto) {
-        super();
-    }
+    public NotaFiscalDetalheEntity(NewNotaFiscalDetalheDto newNotaFiscalDetalheDto) {}
 
     public void atualizarNotaFiscalDetalhe(NotaFiscalDetalheDto notaFiscalDetalheDto) {
         if (notaFiscalDetalheDto.notaFiscal() != null) {

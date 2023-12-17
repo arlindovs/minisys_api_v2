@@ -2,35 +2,39 @@ package com.learning.api.minisys.entitys.faturamento.estoque;
 
 import com.learning.api.minisys.dtos.faturamento.estoque.EstoqueDto;
 import com.learning.api.minisys.dtos.faturamento.estoque.NewEstoqueDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.entitys.cadastro.item.ItemEntity;
+import com.learning.api.minisys.entitys.cadastro.item.UnidadeMedidaEntity;
 import com.learning.api.minisys.entitys.faturamento.nota_fiscal.NotaFiscalDetalheEntity;
 import com.learning.api.minisys.entitys.faturamento.ordem_servico.OrdemServicoDetalheEntity;
 import com.learning.api.minisys.entitys.faturamento.pedido.PedidoDetalheEntity;
 import com.learning.api.minisys.enums.estoque.TipoEstoque;
-import com.learning.api.minisys.entitys.cadastro.item.UnidadeMedidaEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "estoque")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EstoqueEntity extends BaseEntity {
+public class EstoqueEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "TIPO")
     @Enumerated(EnumType.STRING)
@@ -129,9 +133,7 @@ public class EstoqueEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public EstoqueEntity(NewEstoqueDto newEstoqueDto) {
-        super();
-    }
+    public EstoqueEntity(NewEstoqueDto newEstoqueDto) {}
 
     public void atualizarEstoque(EstoqueDto estoqueDto) {
         if (estoqueDto.tipo() != null) {

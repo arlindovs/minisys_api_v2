@@ -2,7 +2,6 @@ package com.learning.api.minisys.entitys.cadastro.integrante;
 
 import com.learning.api.minisys.dtos.cadastro.integrante.IntegranteDto;
 import com.learning.api.minisys.dtos.cadastro.integrante.NewIntegranteDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
 import com.learning.api.minisys.enums.integrante.TipoIntegrante;
@@ -10,6 +9,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -20,13 +22,16 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "integrante")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IntegranteEntity extends BaseEntity {
+public class IntegranteEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @JoinColumn(name = "GRUPO_INTEGRANTE")
     @ManyToOne
@@ -87,7 +92,6 @@ public class IntegranteEntity extends BaseEntity {
     }
 
     public IntegranteEntity(NewIntegranteDto integrante) {
-        super();
     }
 
     public void atualizarIntegrante(IntegranteDto dadosIntegrante) {

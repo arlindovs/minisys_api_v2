@@ -2,28 +2,32 @@ package com.learning.api.minisys.entitys.cadastro.usuario;
 
 import com.learning.api.minisys.dtos.cadastro.usuario.NewUsuarioGrupoDto;
 import com.learning.api.minisys.dtos.cadastro.usuario.UsuarioGrupoDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.usuario.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "usuario_grupo")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioGrupoEntity extends BaseEntity {
+public class UsuarioGrupoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "DESCRICAO", unique = true)
     private String descricao;
@@ -51,9 +55,7 @@ public class UsuarioGrupoEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public UsuarioGrupoEntity(NewUsuarioGrupoDto newUsuarioGrupoDto) {
-        super();
-    }
+    public UsuarioGrupoEntity(NewUsuarioGrupoDto newUsuarioGrupoDto) {}
 
     public void atualizarUsuarioGrupo(UsuarioGrupoDto usuarioGrupoDto) {
         if(usuarioGrupoDto.descricao() != null) {

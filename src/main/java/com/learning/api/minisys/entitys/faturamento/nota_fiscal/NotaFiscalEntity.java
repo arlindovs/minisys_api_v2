@@ -2,7 +2,6 @@ package com.learning.api.minisys.entitys.faturamento.nota_fiscal;
 
 import com.learning.api.minisys.dtos.faturamento.nota_fiscal.NewNotaFiscalDto;
 import com.learning.api.minisys.dtos.faturamento.nota_fiscal.NotaFiscalDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.nota_fiscal.FinalidadeNotaFiscal;
@@ -11,24 +10,29 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "nota_fiscal")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotaFiscalEntity extends BaseEntity {
+public class NotaFiscalEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "TIPO")
     @Enumerated(EnumType.STRING)
@@ -122,9 +126,7 @@ public class NotaFiscalEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public NotaFiscalEntity(NewNotaFiscalDto newNotaFiscalDto) {
-        super();
-    }
+    public NotaFiscalEntity(NewNotaFiscalDto newNotaFiscalDto) {}
 
     public void atualizarNotaFiscal(NotaFiscalDto notaFiscalDto) {
         if (notaFiscalDto.tipo() != null) {

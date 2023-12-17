@@ -2,7 +2,6 @@ package com.learning.api.minisys.entitys.financeiro.movimentacao;
 
 import com.learning.api.minisys.dtos.financeiro.movimentacao.MovimentacaoDto;
 import com.learning.api.minisys.dtos.financeiro.movimentacao.NewMovimentacaoDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.entitys.financeiro.titulo.TituloEntity;
 import com.learning.api.minisys.enums.Status;
@@ -13,23 +12,28 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "movimentacao")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovimentacaoEntity extends BaseEntity {
+public class MovimentacaoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "STATUS_MOVIMENTACAO")
     @Enumerated(EnumType.STRING)
@@ -123,9 +127,7 @@ public class MovimentacaoEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public MovimentacaoEntity(NewMovimentacaoDto newMovimentacaoDto) {
-        super();
-    }
+    public MovimentacaoEntity(NewMovimentacaoDto newMovimentacaoDto) {}
 
     public void atualizarMovimentacao(MovimentacaoDto movimentacaoDto) {
         if (movimentacaoDto.statusMovimentacao() != null) {

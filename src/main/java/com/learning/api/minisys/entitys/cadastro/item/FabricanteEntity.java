@@ -2,27 +2,31 @@ package com.learning.api.minisys.entitys.cadastro.item;
 
 import com.learning.api.minisys.dtos.cadastro.item.FabricanteDto;
 import com.learning.api.minisys.dtos.cadastro.item.NewFabricanteDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "fabricante")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FabricanteEntity extends BaseEntity {
+public class FabricanteEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "DESCRICAO", unique = true)
     private String descricao;
@@ -45,9 +49,7 @@ public class FabricanteEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public FabricanteEntity(NewFabricanteDto newFabricanteDto) {
-        super();
-    }
+    public FabricanteEntity(NewFabricanteDto newFabricanteDto) {}
 
     public void atualizarFabricante(FabricanteDto fabricanteDto) {
         if(fabricanteDto.descricao() != null) {

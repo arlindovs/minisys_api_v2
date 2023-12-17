@@ -2,7 +2,6 @@ package com.learning.api.minisys.entitys.faturamento.ordem_servico;
 
 import com.learning.api.minisys.dtos.faturamento.ordem_servico.NewOrdemServicoDetalheDto;
 import com.learning.api.minisys.dtos.faturamento.ordem_servico.OrdemServicoDetalheDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.item.ItemEntity;
 import com.learning.api.minisys.entitys.cadastro.item.UnidadeMedidaEntity;
 import com.learning.api.minisys.enums.item.TipoItem;
@@ -10,22 +9,27 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "ordem_servico_detalhe")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrdemServicoDetalheEntity extends BaseEntity {
+public class OrdemServicoDetalheEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @JoinColumn(name = "ORDEM_SERVICO")
     @OneToOne
@@ -94,9 +98,7 @@ public class OrdemServicoDetalheEntity extends BaseEntity {
         this.valorTotal = ordemServicoDetalheDto.valorTotal();
     }
 
-    public OrdemServicoDetalheEntity(NewOrdemServicoDetalheDto newOrdemServicoDetalheDto) {
-        super();
-    }
+    public OrdemServicoDetalheEntity(NewOrdemServicoDetalheDto newOrdemServicoDetalheDto) {}
 
     public void atualizarOrdemServicoDetalhe(OrdemServicoDetalheDto ordemServicoDetalheDto) {
         if (ordemServicoDetalheDto.ordemServico() != null) {

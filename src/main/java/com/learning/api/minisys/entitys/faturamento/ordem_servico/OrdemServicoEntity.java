@@ -2,7 +2,6 @@ package com.learning.api.minisys.entitys.faturamento.ordem_servico;
 
 import com.learning.api.minisys.dtos.faturamento.ordem_servico.NewOrdemServicoDto;
 import com.learning.api.minisys.dtos.faturamento.ordem_servico.OrdemServicoDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.ordem_servico.FinalidadeOrdemServico;
@@ -12,23 +11,28 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "ordem_servico")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrdemServicoEntity extends BaseEntity {
+public class OrdemServicoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "TIPO_MOVIMENTACAO")
     @Enumerated(EnumType.STRING)
@@ -124,9 +128,7 @@ public class OrdemServicoEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public OrdemServicoEntity(NewOrdemServicoDto ordemServico){
-        super();
-    }
+    public OrdemServicoEntity(NewOrdemServicoDto ordemServico) {}
 
     public void atualizarOrdemServico(OrdemServicoDto ordemServicoDto) {
         if (ordemServicoDto.tipoMovimentacao() != null) {

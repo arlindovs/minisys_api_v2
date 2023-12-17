@@ -2,27 +2,31 @@ package com.learning.api.minisys.entitys.cadastro.integrante;
 
 import com.learning.api.minisys.dtos.cadastro.integrante.IntegranteGrupoDto;
 import com.learning.api.minisys.dtos.cadastro.integrante.NewIntegranteGrupoDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "integrante_grupo")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IntegranteGrupoEntity extends BaseEntity {
+public class IntegranteGrupoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "DESCRICAO", unique = true)
     private String descricao;
@@ -45,9 +49,7 @@ public class IntegranteGrupoEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public IntegranteGrupoEntity(NewIntegranteGrupoDto newIntegranteGrupoDto) {
-        super();
-    }
+    public IntegranteGrupoEntity(NewIntegranteGrupoDto newIntegranteGrupoDto) {}
 
     public void atualizarIntegranteGrupo(IntegranteGrupoDto integranteGrupoDto) {
         if(integranteGrupoDto.descricao() != null) {

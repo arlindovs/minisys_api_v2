@@ -2,7 +2,6 @@ package com.learning.api.minisys.entitys.financeiro.titulo;
 
 import com.learning.api.minisys.dtos.financeiro.titulo.NewTituloDto;
 import com.learning.api.minisys.dtos.financeiro.titulo.TituloDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.titulo.StatusTitulo;
@@ -11,23 +10,28 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "titulo")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TituloEntity extends BaseEntity {
+public class TituloEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "STATUS_TITULO")
     @Enumerated(EnumType.STRING)
@@ -120,9 +124,7 @@ public class TituloEntity extends BaseEntity {
         this.versao = LocalDateTime.now();
     }
 
-    public TituloEntity(NewTituloDto newTituloDto) {
-        super();
-    }
+    public TituloEntity(NewTituloDto newTituloDto) {}
 
     public void atualizarTitulo(TituloDto tituloDto) {
         if (tituloDto.statusTitulo() != null) {

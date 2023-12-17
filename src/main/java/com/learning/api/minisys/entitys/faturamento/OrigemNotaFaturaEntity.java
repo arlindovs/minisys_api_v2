@@ -1,30 +1,33 @@
 package com.learning.api.minisys.entitys.faturamento;
 
 import com.learning.api.minisys.dtos.faturamento.OrigemNotaFaturaDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.faturamento.nota_fiscal.NotaFiscalDetalheEntity;
 import com.learning.api.minisys.entitys.faturamento.ordem_servico.OrdemServicoDetalheEntity;
 import com.learning.api.minisys.entitys.faturamento.pedido.PedidoDetalheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "origem_nota_fatura")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrigemNotaFaturaEntity extends BaseEntity {
+public class OrigemNotaFaturaEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @Column(name = "DATA_CRIACAO")
     private LocalDateTime dataCriacao;

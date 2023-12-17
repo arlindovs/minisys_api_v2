@@ -2,29 +2,33 @@ package com.learning.api.minisys.entitys.faturamento.ordem_servico;
 
 import com.learning.api.minisys.dtos.faturamento.ordem_servico.NewOrdemServicoEquipamentoDto;
 import com.learning.api.minisys.dtos.faturamento.ordem_servico.OrdemServicoEqipamentoDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.item.ItemEntity;
 import com.learning.api.minisys.enums.item.TipoMovimentacaoItem;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "ordem_servico_equipamento")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrdemServicoEquipamentoEntity extends BaseEntity {
+public class OrdemServicoEquipamentoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @JoinColumn(name = "ORDEM_SERVICO")
     @OneToOne
@@ -63,9 +67,7 @@ public class OrdemServicoEquipamentoEntity extends BaseEntity {
         this.quantidade = ordemServicoEqipamentoDto.quantidade();
     }
 
-    public OrdemServicoEquipamentoEntity(NewOrdemServicoEquipamentoDto newOrdemServicoEquipamentoDto) {
-        super();
-    }
+    public OrdemServicoEquipamentoEntity(NewOrdemServicoEquipamentoDto newOrdemServicoEquipamentoDto) {}
 
     public void atualizar(OrdemServicoEqipamentoDto ordemServicoEqipamentoDto) {
         if (ordemServicoEqipamentoDto.ordemServico() != null) {

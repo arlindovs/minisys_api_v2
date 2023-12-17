@@ -2,27 +2,31 @@ package com.learning.api.minisys.entitys.faturamento.pedido;
 
 import com.learning.api.minisys.dtos.faturamento.pedido.NewPedidoDetalheDto;
 import com.learning.api.minisys.dtos.faturamento.pedido.PedidoDetalheDto;
-import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.item.ItemEntity;
 import com.learning.api.minisys.entitys.cadastro.item.UnidadeMedidaEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "pedido_detalhe")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PedidoDetalheEntity extends BaseEntity {
+public class PedidoDetalheEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CODIGO;
 
     @JoinColumn(name = "PEDIDO")
     @OneToOne
@@ -90,9 +94,7 @@ public class PedidoDetalheEntity extends BaseEntity {
         this.valorTotal = pedidoDetalheDto.valorTotal();
     }
 
-    public PedidoDetalheEntity(NewPedidoDetalheDto newPedidoDetalheDto) {
-        super();
-    }
+    public PedidoDetalheEntity(NewPedidoDetalheDto newPedidoDetalheDto) {}
 
     public void atualizarPedidoDetalhe(PedidoDetalheDto pedidoDetalheDto) {
         if (pedidoDetalheDto.pedido() != null) {
