@@ -45,5 +45,15 @@ public class OrigemTituloFaturaEntity extends BaseEntity {
     @ManyToOne
     private TituloEntity titulo;
 
-    public OrigemTituloFaturaEntity(OrigemTituloFaturaDto origemTituloFaturaDto)
+    public OrigemTituloFaturaEntity(OrigemTituloFaturaDto origemTituloFaturaDto) {
+        this.dataCriacao = LocalDateTime.now();
+        this.pedido = origemTituloFaturaDto.pedido() != null ?
+                new PedidoEntity(origemTituloFaturaDto.pedido()) : null;
+        this.ordemServico = origemTituloFaturaDto.ordemServico() != null ?
+                new OrdemServicoEntity(origemTituloFaturaDto.ordemServico()) : null;
+        this.notaFiscal = origemTituloFaturaDto.notaFiscal() != null ?
+                new NotaFiscalEntity(origemTituloFaturaDto.notaFiscal()) : null;
+        this.titulo = origemTituloFaturaDto.titulo() != null ?
+                new TituloEntity(origemTituloFaturaDto.titulo()) : null;
+    }
 }
