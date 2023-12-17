@@ -1,2 +1,4 @@
-package com.learning.api.minisys.dtos.financeiro;public record OrigemTituloFaturaDto() {
+package com.learning.api.minisys.dtos.financeiro;
+
+public record OrigemTituloFaturaDto() {
 }
