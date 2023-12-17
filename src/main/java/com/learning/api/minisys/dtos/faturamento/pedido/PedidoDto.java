@@ -9,6 +9,7 @@ import com.learning.api.minisys.enums.pedido.TipoMovimentacaoPedido;
 import com.learning.api.minisys.enums.pedido.TipoPedido;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -37,7 +38,7 @@ public record PedidoDto(
         Double total,
         @Enumerated
         Status status,
-        @NotBlank(message = "O campo empresa é obrigatório")
+        @NotNull(message = "O campo empresa é obrigatório")
         Long empresa,
         LocalDateTime versao
 ) {

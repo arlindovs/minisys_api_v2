@@ -101,7 +101,7 @@ public class PedidoEntity {
     public PedidoEntity(PedidoDto pedidoDto) {
         this.tipo = pedidoDto.tipo();
         this.tipoMovimentacao = pedidoDto.tipoMovimentacao();
-        this.finalidade = pedidoDto.finalidade();
+        this.finalidade = FinalidadePedido.NORMAL;
         this.statusPedido = pedidoDto.statusPedido();
         this.numero = pedidoDto.numero();
         this.controle = pedidoDto.controle();
