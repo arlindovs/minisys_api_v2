@@ -91,7 +91,7 @@ public class NotaFiscalDetalheEntity {
                 new NotaFiscalEntity(notaFiscalDetalheDto.notaFiscal()) : null;
         this.perfilFiscal = notaFiscalDetalheDto.perfilFiscal() != null ?
                 new PerfilFiscalEntity(notaFiscalDetalheDto.perfilFiscal()) : null;
-        this.cancelado = notaFiscalDetalheDto.cancelado();
+        this.cancelado = false;
         this.ordem = notaFiscalDetalheDto.ordem();
         this.tipoItem = notaFiscalDetalheDto.tipoItem();
         this.item = notaFiscalDetalheDto.item() != null ?
