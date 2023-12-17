@@ -7,6 +7,7 @@ import com.learning.api.minisys.enums.titulo.StatusTitulo;
 import com.learning.api.minisys.enums.titulo.TipoTitulo;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -35,6 +36,7 @@ public record TituloDto(
         Double total,
         @Enumerated
         Status status,
+        @NotNull(message = "O campo empresa é obrigatório")
         Long empresa,
         LocalDateTime versao
 
