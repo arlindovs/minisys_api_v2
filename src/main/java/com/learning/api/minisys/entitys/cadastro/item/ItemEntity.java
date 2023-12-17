@@ -82,6 +82,7 @@ public class ItemEntity extends BaseEntity {
     private String codigoOriginal;
 
     @Column(name = "TIPO_MOVIMENTACAO")
+    @Enumerated(EnumType.STRING)
     private TipoMovimentacaoItem tipoMovimentacao;
 
     @Column(name = "PRECO_CUSTO")
@@ -153,8 +154,8 @@ public class ItemEntity extends BaseEntity {
         this.controlaEstoque = dadosItem.controlaEstoque();
         this.podeAlterarPreco = dadosItem.podeAlterarPreco();
         this.podeAlterarDescricao = dadosItem.podeAlterarDescricao();
-        this.status = dadosItem.status();
         this.empresa = dadosItem.empresa();
+        this.status = Status.ATIVO;
         this.versao = LocalDateTime.now();
     }
 
