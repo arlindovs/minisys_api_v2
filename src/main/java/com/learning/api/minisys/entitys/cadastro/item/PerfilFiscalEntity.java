@@ -40,9 +40,9 @@ public class PerfilFiscalEntity extends BaseEntity {
 
     public PerfilFiscalEntity(PerfilFiscalDto perfilFiscalDto) {
         this.descricao = perfilFiscalDto.descricao();
-        this.status = perfilFiscalDto.status();
         this.empresa = perfilFiscalDto.empresa();
-        this.versao = perfilFiscalDto.versao();
+        this.status = Status.ATIVO;
+        this.versao = LocalDateTime.now();
     }
 
     public PerfilFiscalEntity(NewPerfilFiscalDto newPerfilFiscalDto) {
@@ -52,9 +52,6 @@ public class PerfilFiscalEntity extends BaseEntity {
     public void atualizarPerfilFiscal(PerfilFiscalDto perfilFiscalDto) {
         if(perfilFiscalDto.descricao() != null) {
             this.descricao = perfilFiscalDto.descricao();
-        }
-        if(perfilFiscalDto.status() != null) {
-            this.status = perfilFiscalDto.status();
         }
         if(perfilFiscalDto.empresa() != null) {
             this.empresa = perfilFiscalDto.empresa();
