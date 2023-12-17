@@ -79,9 +79,9 @@ public class PedidoController {
         return ResponseEntity.ok(new PedidoDto(pedido));
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/cancelar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarPedido(@PathVariable Long CODIGO) {
+    public ResponseEntity<Void> cancelarPedido(@PathVariable Long CODIGO) {
         var pedido = pedidoRepository.getReferenceById(CODIGO);
 
         if (pedido.getStatus().equals(Status.NORMAL)) {

@@ -105,7 +105,7 @@ public class PedidoDetalheController {
 
     @PostMapping("/cancelar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarPedidoDetalhe(Long CODIGO) {
+    public ResponseEntity<Void> cancelarPedidoDetalhe(Long CODIGO) {
         var pedidoDetalhe = pedidoDetalheRepository.getReferenceById(CODIGO);
 
         if (pedidoDetalhe.getCancelado().equals(true)) {
