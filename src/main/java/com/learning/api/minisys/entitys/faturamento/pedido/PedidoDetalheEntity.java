@@ -79,7 +79,7 @@ public class PedidoDetalheEntity {
                 new PedidoEntity(pedidoDetalheDto.pedido()) : null;
         this.item = pedidoDetalheDto.item() != null ?
                 new ItemEntity(pedidoDetalheDto.item()) : null;
-        this.cancelado = pedidoDetalheDto.cancelado();
+        this.cancelado = false;
         this.ordem = pedidoDetalheDto.ordem();
         this.descricao = pedidoDetalheDto.descricao();
         this.unidadeMedida = pedidoDetalheDto.unidadeMedida() != null ?
