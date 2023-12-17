@@ -39,9 +39,9 @@ public class ItemGrupoEntity extends BaseEntity {
 
     public ItemGrupoEntity(ItemGrupoDto itemGrupoDto) {
         this.descricao = itemGrupoDto.descricao();
-        this.status = itemGrupoDto.status();
+        this.status = Status.ATIVO;
         this.empresa = itemGrupoDto.empresa();
-        this.versao = itemGrupoDto.versao();
+        this.versao = LocalDateTime.now();
     }
 
     public ItemGrupoEntity(NewItemGrupoDto newItemGrupoDto) {
@@ -51,9 +51,6 @@ public class ItemGrupoEntity extends BaseEntity {
     public void atualizarItemGrupo(ItemGrupoDto itemGrupoDto) {
         if(itemGrupoDto.descricao() != null) {
             this.descricao = itemGrupoDto.descricao();
-        }
-        if(itemGrupoDto.status() != null) {
-            this.status = itemGrupoDto.status();
         }
         if(itemGrupoDto.empresa() != null) {
             this.empresa = itemGrupoDto.empresa();
