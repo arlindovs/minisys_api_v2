@@ -183,4 +183,13 @@ public class MovimentacaoEntity {
         }
         this.versao = LocalDateTime.now();
     }
+
+
+    public void setStatusNormal() {
+        this.status = Status.NORMAL;
+    }
+
+    public void setStatusCancelado() {
+        this.status = Status.CANCELADO;
+    }
 }

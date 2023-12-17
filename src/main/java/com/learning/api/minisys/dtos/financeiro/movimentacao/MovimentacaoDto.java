@@ -1,6 +1,7 @@
 package com.learning.api.minisys.dtos.financeiro.movimentacao;
 
 import com.learning.api.minisys.dtos.cadastro.integrante.NewIntegranteDto;
+import com.learning.api.minisys.dtos.financeiro.titulo.NewTituloDto;
 import com.learning.api.minisys.dtos.financeiro.titulo.TituloDto;
 import com.learning.api.minisys.entitys.financeiro.movimentacao.MovimentacaoEntity;
 import com.learning.api.minisys.enums.Status;
@@ -8,7 +9,7 @@ import com.learning.api.minisys.enums.movimentacao.StatusMovimentacao;
 import com.learning.api.minisys.enums.movimentacao.Tipo;
 import com.learning.api.minisys.enums.movimentacao.TipoMovimentacao;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -21,12 +22,12 @@ public record MovimentacaoDto(
         Tipo tipo,
         @Enumerated
         TipoMovimentacao tipoMovimentacao,
-        TituloDto titulo,
+        NewTituloDto titulo,
         String descricao,
         String observacao,
         NewIntegranteDto integrante,
         NewIntegranteDto funcionario,
-        FormaPagamentoDto formaPagamento,
+        NewFormaPagamentoDto formaPagamento,
         LocalDateTime dataLancamento,
         LocalDateTime dataVencimento,
         LocalDateTime dataCompensacao,
@@ -35,7 +36,7 @@ public record MovimentacaoDto(
         Double valorAcrescimo,
         Double total,
         Status status,
-        @NotBlank(message = "O campo empresa é obrigatório")
+        @NotNull(message = "O campo empresa é obrigatório")
         Long empresa,
         LocalDateTime versao
 ) {
@@ -45,7 +46,7 @@ public record MovimentacaoDto(
                 movimentacaoEntity.getTipo(),
                 movimentacaoEntity.getTipoMovimentacao(),
                 movimentacaoEntity.getTitulo() != null ?
-                        new TituloDto(movimentacaoEntity.getTitulo()) : null,
+                        new NewTituloDto(movimentacaoEntity.getTitulo().getCODIGO()) : null,
                 movimentacaoEntity.getDescricao(),
                 movimentacaoEntity.getObservacao(),
                 movimentacaoEntity.getIntegrante() != null ?
@@ -53,7 +54,7 @@ public record MovimentacaoDto(
                 movimentacaoEntity.getFuncionario() != null ?
                         new NewIntegranteDto(movimentacaoEntity.getFuncionario().getCODIGO()) : null,
                 movimentacaoEntity.getFormaPagamento() != null ?
-                        new FormaPagamentoDto(movimentacaoEntity.getFormaPagamento()) : null,
+                        new NewFormaPagamentoDto(movimentacaoEntity.getFormaPagamento().getCODIGO()) : null,
                 movimentacaoEntity.getDataLancamento(),
                 movimentacaoEntity.getDataVencimento(),
                 movimentacaoEntity.getDataCompensacao(),
