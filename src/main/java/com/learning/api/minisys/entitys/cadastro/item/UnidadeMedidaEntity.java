@@ -44,9 +44,9 @@ public class UnidadeMedidaEntity extends BaseEntity {
     public UnidadeMedidaEntity(UnidadeMedidaDto unidadeMedidaDto) {
         this.descricao = unidadeMedidaDto.descricao();
         this.simbolo = unidadeMedidaDto.simbolo();
-        this.status = unidadeMedidaDto.status();
+        this.status = Status.ATIVO;
         this.empresa = unidadeMedidaDto.empresa();
-        this.versao = unidadeMedidaDto.versao();
+        this.versao = LocalDateTime.now();
     }
 
     public UnidadeMedidaEntity(NewUnidadeMedidaDto newUnidadeMedidaDto) {
@@ -59,9 +59,6 @@ public class UnidadeMedidaEntity extends BaseEntity {
         }
         if(unidadeMedidaDto.simbolo() != null) {
             this.simbolo = unidadeMedidaDto.simbolo();
-        }
-        if(unidadeMedidaDto.status() != null) {
-            this.status = unidadeMedidaDto.status();
         }
         if(unidadeMedidaDto.empresa() != null) {
             this.empresa = unidadeMedidaDto.empresa();
