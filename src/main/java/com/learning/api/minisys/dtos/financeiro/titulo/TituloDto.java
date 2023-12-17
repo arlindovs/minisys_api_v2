@@ -33,6 +33,7 @@ public record TituloDto(
         Double valorPago,
         Double valorEmAberto,
         Double total,
+        @Enumerated
         Status status,
         Long empresa,
         LocalDateTime versao
