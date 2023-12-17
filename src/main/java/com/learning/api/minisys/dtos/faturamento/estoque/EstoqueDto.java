@@ -10,6 +10,7 @@ import com.learning.api.minisys.entitys.faturamento.estoque.EstoqueEntity;
 import com.learning.api.minisys.enums.estoque.TipoEstoque;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -35,7 +36,7 @@ public record EstoqueDto(
         NewPedidoDetalheDto pedidoDetalhe,
         NewOrdemServicoDetalheDto ordemServicoDetalhe,
         NewNotaFiscalDetalheDto notaFiscalDetalhe,
-        @NotBlank(message = "O campo empresa é obrigatório")
+        @NotNull(message = "O campo empresa é obrigatório")
         Long empresa,
         LocalDateTime versao
 ) {
