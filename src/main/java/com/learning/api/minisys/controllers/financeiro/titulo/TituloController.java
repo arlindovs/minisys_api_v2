@@ -45,7 +45,7 @@ public class TituloController {
 
         tituloRepository.save(titulo);
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping
