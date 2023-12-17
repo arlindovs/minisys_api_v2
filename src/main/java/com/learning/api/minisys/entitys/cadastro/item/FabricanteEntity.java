@@ -40,9 +40,9 @@ public class FabricanteEntity extends BaseEntity {
 
     public FabricanteEntity(FabricanteDto fabricanteDto) {
         this.descricao = fabricanteDto.descricao();
-        this.status = fabricanteDto.status();
+        this.status = Status.ATIVO;
         this.empresa = fabricanteDto.empresa();
-        this.versao = fabricanteDto.versao();
+        this.versao = LocalDateTime.now();
     }
 
     public FabricanteEntity(NewFabricanteDto newFabricanteDto) {

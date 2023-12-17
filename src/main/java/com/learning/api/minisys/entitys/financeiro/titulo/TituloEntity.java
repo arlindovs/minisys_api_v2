@@ -47,7 +47,7 @@ public class TituloEntity extends BaseEntity {
     @ManyToOne
     private IntegranteEntity integrante;
 
-    @Column(name = "FUNCIONARIO")
+    @JoinColumn(name = "FUNCIONARIO")
     @ManyToOne
     private IntegranteEntity funcionario;
 
