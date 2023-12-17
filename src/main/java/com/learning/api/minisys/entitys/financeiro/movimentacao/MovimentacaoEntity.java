@@ -1,6 +1,7 @@
 package com.learning.api.minisys.entitys.financeiro.movimentacao;
 
 import com.learning.api.minisys.dtos.financeiro.movimentacao.MovimentacaoDto;
+import com.learning.api.minisys.dtos.financeiro.movimentacao.NewMovimentacaoDto;
 import com.learning.api.minisys.entitys.BaseEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.entitys.financeiro.titulo.TituloEntity;
@@ -96,5 +97,88 @@ public class MovimentacaoEntity extends BaseEntity {
     private LocalDateTime versao;
 
 
-    public MovimentacaoEntity(MovimentacaoDto movimentacaoDto)
+    public MovimentacaoEntity(MovimentacaoDto movimentacaoDto) {
+        this.statusMovimentacao = movimentacaoDto.statusMovimentacao();
+        this.tipo = movimentacaoDto.tipo();
+        this.tipoMovimentacao = movimentacaoDto.tipoMovimentacao();
+        this.titulo = movimentacaoDto.titulo() != null ?
+                new TituloEntity(movimentacaoDto.titulo()) : null;
+        this.descricao = movimentacaoDto.descricao();
+        this.observacao = movimentacaoDto.observacao();
+        this.integrante = movimentacaoDto.integrante() != null ?
+                new IntegranteEntity(movimentacaoDto.integrante()) : null;
+        this.funcionario = movimentacaoDto.funcionario() != null ?
+                new IntegranteEntity(movimentacaoDto.funcionario()) : null;
+        this.formaPagamento = movimentacaoDto.formaPagamento() != null ?
+                new FormaPagamentoEntity(movimentacaoDto.formaPagamento()) : null;
+        this.dataLancamento = movimentacaoDto.dataLancamento();
+        this.dataVencimento = movimentacaoDto.dataVencimento();
+        this.dataCompensacao = movimentacaoDto.dataCompensacao();
+        this.valor = movimentacaoDto.valor();
+        this.valorDesconto = movimentacaoDto.valorDesconto();
+        this.valorAcrescimo = movimentacaoDto.valorAcrescimo();
+        this.total = movimentacaoDto.total();
+        this.empresa = movimentacaoDto.empresa();
+        this.status = Status.NORMAL;
+        this.versao = LocalDateTime.now();
+    }
+
+    public MovimentacaoEntity(NewMovimentacaoDto newMovimentacaoDto) {
+        super();
+    }
+
+    public void atualizarMovimentacao(MovimentacaoDto movimentacaoDto) {
+        if (movimentacaoDto.statusMovimentacao() != null) {
+            this.statusMovimentacao = movimentacaoDto.statusMovimentacao();
+        }
+        if (movimentacaoDto.tipo() != null) {
+            this.tipo = movimentacaoDto.tipo();
+        }
+        if (movimentacaoDto.tipoMovimentacao() != null) {
+            this.tipoMovimentacao = movimentacaoDto.tipoMovimentacao();
+        }
+        if (movimentacaoDto.titulo() != null) {
+            this.titulo = new TituloEntity(movimentacaoDto.titulo());
+        }
+        if (movimentacaoDto.descricao() != null) {
+            this.descricao = movimentacaoDto.descricao();
+        }
+        if (movimentacaoDto.observacao() != null) {
+            this.observacao = movimentacaoDto.observacao();
+        }
+        if (movimentacaoDto.integrante() != null) {
+            this.integrante = new IntegranteEntity(movimentacaoDto.integrante());
+        }
+        if (movimentacaoDto.funcionario() != null) {
+            this.funcionario = new IntegranteEntity(movimentacaoDto.funcionario());
+        }
+        if (movimentacaoDto.formaPagamento() != null) {
+            this.formaPagamento = new FormaPagamentoEntity(movimentacaoDto.formaPagamento());
+        }
+        if (movimentacaoDto.dataLancamento() != null) {
+            this.dataLancamento = movimentacaoDto.dataLancamento();
+        }
+        if (movimentacaoDto.dataVencimento() != null) {
+            this.dataVencimento = movimentacaoDto.dataVencimento();
+        }
+        if (movimentacaoDto.dataCompensacao() != null) {
+            this.dataCompensacao = movimentacaoDto.dataCompensacao();
+        }
+        if (movimentacaoDto.valor() != null) {
+            this.valor = movimentacaoDto.valor();
+        }
+        if (movimentacaoDto.valorDesconto() != null) {
+            this.valorDesconto = movimentacaoDto.valorDesconto();
+        }
+        if (movimentacaoDto.valorAcrescimo() != null) {
+            this.valorAcrescimo = movimentacaoDto.valorAcrescimo();
+        }
+        if (movimentacaoDto.total() != null) {
+            this.total = movimentacaoDto.total();
+        }
+        if (movimentacaoDto.empresa() != null) {
+            this.empresa = movimentacaoDto.empresa();
+        }
+        this.versao = LocalDateTime.now();
+    }
 }
