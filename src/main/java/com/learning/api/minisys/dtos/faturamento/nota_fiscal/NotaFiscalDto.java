@@ -7,6 +7,7 @@ import com.learning.api.minisys.enums.nota_fiscal.FinalidadeNotaFiscal;
 import com.learning.api.minisys.enums.nota_fiscal.TipoNotaFiscal;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
@@ -35,7 +36,7 @@ public record NotaFiscalDto(
         Blob xml,
         @Enumerated
         Status status,
-        @NotBlank(message = "O campo empresa é obrigatório")
+        @NotNull(message = "O campo empresa é obrigatório")
         Long empresa,
         LocalDateTime versao
 ) {
