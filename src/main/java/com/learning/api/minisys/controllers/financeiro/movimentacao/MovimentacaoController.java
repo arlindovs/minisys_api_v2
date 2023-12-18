@@ -122,7 +122,7 @@ public class MovimentacaoController {
     @Transactional
     public ResponseEntity<Void> deletarMovimentacao(@PathVariable Long CODIGO) {
         movimentacaoRepository.deleteById(CODIGO);
-        
+
         return ResponseEntity.noContent().build();
     }
 }
