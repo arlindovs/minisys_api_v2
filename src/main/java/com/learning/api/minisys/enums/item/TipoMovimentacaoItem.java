@@ -2,8 +2,8 @@ package com.learning.api.minisys.enums.item;
 
 public enum TipoMovimentacaoItem {
 
-    TIPO_COMPRA("Tipo Compra"),
-    TIPO_VENDA("Tipo Venda"),
+    COMPRA("Tipo Compra"),
+    VENDA("Tipo Venda"),
     EQUIPAMENTO("Equipamento"),
     FERRAMENTA("Ferramenta"),
     MATERIAL("Material"),
