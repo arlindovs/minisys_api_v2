@@ -31,6 +31,20 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/api/v1/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/v1/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/**").permitAll()
+                        .requestMatchers(
+                                "/api/v1/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**",
+                                "/swagger-resources",
+                                "/swagger-resources/**",
+                                "/webjars/**",
+                                "/v2/api-docs",
+                                "/v2/api-docs-ext",
+                                "/configuration/ui",
+                                "/configuration/security",
+                                "/v3/api-docs"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
