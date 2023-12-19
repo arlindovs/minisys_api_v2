@@ -32,7 +32,6 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.PUT, "/api/v1/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/**").permitAll()
                         .requestMatchers(
-                                "/api/v1/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
                                 "/v3/api-docs/**",
