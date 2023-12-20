@@ -17,6 +17,20 @@ public class MinisysApplication {
 
 
 	@Bean
+	public WebMvcConfigurer corsLocalConfig() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
+						.allowedHeaders("Origin","X-Requested-With", "Content-Type", "Accept", "Authorization")
+						.allowedOrigins("http://localhost:4200");
+			}
+		};
+	}
+
+
+	@Bean
 	public OpenAPI customOpenAPI() {
 		return new OpenAPI()
 				.info(new Info()
