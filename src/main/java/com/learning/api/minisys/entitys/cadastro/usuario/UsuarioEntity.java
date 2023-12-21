@@ -1,6 +1,7 @@
 package com.learning.api.minisys.entitys.cadastro.usuario;
 
 import com.learning.api.minisys.dtos.cadastro.usuario.UsuarioDto;
+import com.learning.api.minisys.dtos.cadastro.usuario.table.UsuarioTableDto;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.enums.Status;
 import jakarta.persistence.Column;
@@ -72,6 +73,15 @@ public class UsuarioEntity implements UserDetails {
         this.status = dadosUsuario.status();
         this.empresa = dadosUsuario.empresa();
         this.versao = LocalDateTime.now();
+    }
+
+    public UsuarioEntity(UsuarioTableDto usuarioTableDto) {
+        this.CODIGO = usuarioTableDto.CODIGO();
+        this.usuarioGrupo = new UsuarioGrupoEntity(usuarioTableDto.usuarioGrupo());
+        this.funcionario = new IntegranteEntity(usuarioTableDto.funcionario());
+        this.login = usuarioTableDto.login();
+        this.status = usuarioTableDto.status();
+        this.empresa = usuarioTableDto.empresa();
     }
 
     public void atualizarUsuario(UsuarioDto dadosUsuario) {

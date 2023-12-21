@@ -2,6 +2,7 @@ package com.learning.api.minisys.entitys.cadastro.integrante;
 
 import com.learning.api.minisys.dtos.cadastro.integrante.IntegranteDto;
 import com.learning.api.minisys.dtos.cadastro.integrante.NewIntegranteDto;
+import com.learning.api.minisys.dtos.cadastro.integrante.table.IntegranteTableDto;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.integrante.TipoDocumento;
 import com.learning.api.minisys.enums.integrante.TipoIntegrante;
@@ -92,6 +93,11 @@ public class IntegranteEntity {
     }
 
     public IntegranteEntity(NewIntegranteDto integrante) {
+    }
+
+    public IntegranteEntity(IntegranteTableDto integranteTableDto) {
+        this.CODIGO = integranteTableDto.CODIGO();
+        this.nome = integranteTableDto.nome();
     }
 
     public void atualizarIntegrante(IntegranteDto dadosIntegrante) {

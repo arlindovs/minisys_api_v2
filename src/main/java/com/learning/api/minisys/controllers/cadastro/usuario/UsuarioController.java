@@ -1,6 +1,7 @@
 package com.learning.api.minisys.controllers.cadastro.usuario;
 
 import com.learning.api.minisys.dtos.cadastro.usuario.UsuarioDto;
+import com.learning.api.minisys.dtos.cadastro.usuario.table.UsuarioTableDto;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.entitys.cadastro.usuario.UsuarioEntity;
 import com.learning.api.minisys.entitys.cadastro.usuario.UsuarioGrupoEntity;
@@ -61,8 +62,8 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public Iterable<UsuarioDto> listarUsuarios() {
-        return usuarioRepository.findAll().stream().map(UsuarioDto::new).toList();
+    public Iterable<UsuarioTableDto> listarUsuarios() {
+        return usuarioRepository.findAll().stream().map(UsuarioTableDto::new).toList();
     }
 
     @GetMapping("/{CODIGO}")

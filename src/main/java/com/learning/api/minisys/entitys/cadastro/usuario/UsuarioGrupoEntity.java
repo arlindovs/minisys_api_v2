@@ -2,6 +2,7 @@ package com.learning.api.minisys.entitys.cadastro.usuario;
 
 import com.learning.api.minisys.dtos.cadastro.usuario.NewUsuarioGrupoDto;
 import com.learning.api.minisys.dtos.cadastro.usuario.UsuarioGrupoDto;
+import com.learning.api.minisys.dtos.cadastro.usuario.table.UsuarioGrupoTableDto;
 import com.learning.api.minisys.enums.Status;
 import com.learning.api.minisys.enums.usuario.Role;
 import jakarta.persistence.Column;
@@ -56,6 +57,11 @@ public class UsuarioGrupoEntity {
     }
 
     public UsuarioGrupoEntity(NewUsuarioGrupoDto newUsuarioGrupoDto) {}
+
+    public UsuarioGrupoEntity(UsuarioGrupoTableDto usuarioGrupoTableDto) {
+        this.CODIGO = usuarioGrupoTableDto.CODIGO();
+        this.descricao = usuarioGrupoTableDto.descricao();
+    }
 
     public void atualizarUsuarioGrupo(UsuarioGrupoDto usuarioGrupoDto) {
         if(usuarioGrupoDto.descricao() != null) {
