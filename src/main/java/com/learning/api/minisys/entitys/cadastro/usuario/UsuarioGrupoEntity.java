@@ -51,7 +51,7 @@ public class UsuarioGrupoEntity {
     public UsuarioGrupoEntity(UsuarioGrupoDto usuarioGrupoDto) {
         this.descricao = usuarioGrupoDto.descricao();
         this.perfil = usuarioGrupoDto.perfil();
-        this.status = usuarioGrupoDto.status();
+        this.status = Status.ATIVO;
         this.empresa = usuarioGrupoDto.empresa();
         this.versao = LocalDateTime.now();
     }

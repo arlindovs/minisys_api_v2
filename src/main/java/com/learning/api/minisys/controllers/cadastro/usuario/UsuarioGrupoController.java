@@ -59,9 +59,9 @@ public class UsuarioGrupoController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarUsuarioGrupo(@PathVariable Long CODIGO) {
+    public ResponseEntity<UsuarioGrupoDto> ativarUsuarioGrupo(@PathVariable Long CODIGO) {
         var usuarioGrupo = usuarioGrupoRepository.getReferenceById(CODIGO);
 
         if(usuarioGrupo.getStatus().equals(Status.ATIVO)) {
@@ -70,6 +70,6 @@ public class UsuarioGrupoController {
             usuarioGrupo.setStatusAtivo();
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new UsuarioGrupoDto(usuarioGrupo));
     }
 }
