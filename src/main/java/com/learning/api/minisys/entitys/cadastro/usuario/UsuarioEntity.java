@@ -70,7 +70,7 @@ public class UsuarioEntity implements UserDetails {
         }
         this.login = dadosUsuario.login();
         this.password = new BCryptPasswordEncoder().encode(dadosUsuario.password());
-        this.status = dadosUsuario.status();
+        this.status = Status.ATIVO;
         this.empresa = dadosUsuario.empresa();
         this.versao = LocalDateTime.now();
     }

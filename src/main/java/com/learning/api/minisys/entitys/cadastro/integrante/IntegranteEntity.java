@@ -87,7 +87,7 @@ public class IntegranteEntity {
         this.tipoDocumento = dadosIntegrante.tipoDocumento();
         this.documento = dadosIntegrante.documento();
         this.dataCriacao = LocalDateTime.now();
-        this.status = dadosIntegrante.status();
+        this.status = Status.ATIVO;
         this.empresa = dadosIntegrante.empresa();
         this.versao = LocalDateTime.now();
     }
