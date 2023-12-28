@@ -35,7 +35,7 @@ public class MinisysApplication {
 		return new OpenAPI()
 				.info(new Info()
 						.title("MiniSys API")
-						.version("1.0.5")
+						.version("1.0.6")
 						.description("Aplicação de aprendizado de Spring Boot e Spring Security"));
 	}
 
