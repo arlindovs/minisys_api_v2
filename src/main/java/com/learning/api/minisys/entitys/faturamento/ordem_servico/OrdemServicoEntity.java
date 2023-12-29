@@ -194,9 +194,11 @@ public class OrdemServicoEntity {
 
     public void setStatusNormal() {
         this.status = Status.NORMAL;
+        this.versao = LocalDateTime.now();
     }
 
     public void setStatusCancelado() {
         this.status = Status.CANCELADO;
+        this.versao = LocalDateTime.now();
     }
 }
