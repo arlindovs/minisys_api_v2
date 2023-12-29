@@ -59,7 +59,7 @@ public class IntegranteGrupoController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
     public ResponseEntity<Void> ativarIntegranteGrupo(@PathVariable Long CODIGO) {
         var integranteGrupo = integranteGrupoRepository.getReferenceById(CODIGO);
