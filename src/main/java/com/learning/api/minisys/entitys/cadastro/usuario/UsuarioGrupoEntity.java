@@ -81,9 +81,11 @@ public class UsuarioGrupoEntity {
 
     public void setStatusAtivo() {
         this.status = Status.ATIVO;
+        this.versao = LocalDateTime.now();
     }
 
     public void setStatusInativo() {
         this.status = Status.DESATIVADO;
+        this.versao = LocalDateTime.now();
     }
 }
