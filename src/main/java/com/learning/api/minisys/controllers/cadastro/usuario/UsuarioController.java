@@ -110,7 +110,7 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
     public ResponseEntity<Void> ativarUsuario(@PathVariable Long CODIGO) {
         var usuario = usuarioRepository.getReferenceById(CODIGO);
