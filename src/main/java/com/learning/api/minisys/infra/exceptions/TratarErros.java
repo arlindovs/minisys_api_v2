@@ -1,17 +1,20 @@
 package com.learning.api.minisys.infra.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * Classe responsável por tratar exceções lançadas pelos controladores.
  * Esta classe utiliza a anotação @RestControllerAdvice para tratar exceções em um nível global.
  */
-@RestControllerAdvice
+@ControllerAdvice
 public class TratarErros {
 
     /**
@@ -49,8 +52,17 @@ public class TratarErros {
          * @param erro Objeto FieldError que contém as informações do erro de validação.
          */
         public DadosErro(FieldError erro) {
+
             this(erro.getField(), erro.getDefaultMessage());
         }
     }
 
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<String> errorLoginHttpResponse403(Exception ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Usuário ou senha inválidos! ");
+    }
 }
+
+
+

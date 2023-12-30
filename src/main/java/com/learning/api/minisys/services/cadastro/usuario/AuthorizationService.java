@@ -1,6 +1,8 @@
 package com.learning.api.minisys.services.cadastro.usuario;
 
+import com.learning.api.minisys.entitys.cadastro.usuario.UsuarioEntity;
 import com.learning.api.minisys.repositories.cadastro.usuario.UsuarioRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,3 +20,4 @@ public class AuthorizationService implements UserDetailsService {
         return usuarioRepository.findByLogin(username);
     }
 }
+
