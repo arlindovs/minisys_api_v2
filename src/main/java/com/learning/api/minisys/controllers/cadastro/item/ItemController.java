@@ -124,9 +124,9 @@ public class ItemController {
         return ResponseEntity.ok(new ItemDto(item));
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarItem(@PathVariable Long CODIGO) {
+    public ResponseEntity<ItemDto> desativarItem(@PathVariable Long CODIGO) {
         var item = itemRepository.getReferenceById(CODIGO);
 
         if (item.getStatus().equals(Status.ATIVO)) {
@@ -135,7 +135,7 @@ public class ItemController {
             item.setStatusAtivo();
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new ItemDto(item));
     }
 
     @DeleteMapping("/{CODIGO}")

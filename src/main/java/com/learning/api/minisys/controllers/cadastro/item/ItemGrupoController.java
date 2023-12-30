@@ -51,9 +51,9 @@ public class ItemGrupoController {
         return ResponseEntity.ok(new ItemGrupoDto(itemGrupo));
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarItemGrupo(@PathVariable Long CODIGO) {
+    public ResponseEntity<ItemGrupoDto> desativarItemGrupo(@PathVariable Long CODIGO) {
         var itemGrupo = itemGrupoRepository.getReferenceById(CODIGO);
 
         if (itemGrupo.getStatus().equals(Status.ATIVO)) {
@@ -62,7 +62,7 @@ public class ItemGrupoController {
             itemGrupo.setStatusAtivo();
         }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new ItemGrupoDto(itemGrupo));
     }
 
     @DeleteMapping("/{CODIGO}")

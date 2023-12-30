@@ -51,9 +51,9 @@ public class FabricanteController {
         return ResponseEntity.ok(new FabricanteDto(fabricante));
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarFabricante(@PathVariable Long CODIGO) {
+    public ResponseEntity<FabricanteDto> desativarFabricante(@PathVariable Long CODIGO) {
         var fabricante = fabricanteRepository.getReferenceById(CODIGO);
 
         if (fabricante.getStatus().equals(Status.ATIVO)) {
@@ -62,7 +62,7 @@ public class FabricanteController {
             fabricante.setStatusAtivo();
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new FabricanteDto(fabricante));
     }
 
     @DeleteMapping("/{CODIGO}")

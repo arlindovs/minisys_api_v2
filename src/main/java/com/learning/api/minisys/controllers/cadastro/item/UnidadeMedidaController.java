@@ -51,9 +51,9 @@ public class UnidadeMedidaController {
         return ResponseEntity.ok(new UnidadeMedidaDto(unidadeMedida));
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarUnidadeMedida(@PathVariable Long CODIGO) {
+    public ResponseEntity<UnidadeMedidaDto> desativarUnidadeMedida(@PathVariable Long CODIGO) {
         var unidadeMedida = unidadeMedidaRepository.getReferenceById(CODIGO);
 
         if (unidadeMedida.getStatus().equals(Status.ATIVO)) {
@@ -62,7 +62,7 @@ public class UnidadeMedidaController {
             unidadeMedida.setStatusAtivo();
         }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new UnidadeMedidaDto(unidadeMedida));
     }
 
     @DeleteMapping("/{CODIGO}")
