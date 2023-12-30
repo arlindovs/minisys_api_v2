@@ -21,7 +21,7 @@ public record IntegranteGrupoDto(
         @NotNull(message = "O campo empresa é obrigatório")
         Long empresa,
 
-        LocalDateTime version
+        LocalDateTime versao
 ) {
 
     public IntegranteGrupoDto(IntegranteGrupoEntity integranteGrupoEntity) {

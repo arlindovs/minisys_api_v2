@@ -91,9 +91,9 @@ public class IntegranteController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarIntegrante(@PathVariable Long CODIGO) {
+    public ResponseEntity<IntegranteDto> ativarIntegrante(@PathVariable Long CODIGO) {
         var integrante = integranteRepository.getReferenceById(CODIGO);
 
         if (integrante.getStatus().equals(Status.ATIVO)) {
@@ -102,7 +102,7 @@ public class IntegranteController {
             integrante.setStatusAtivo();
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new IntegranteDto(integrante));
     }
 
 }

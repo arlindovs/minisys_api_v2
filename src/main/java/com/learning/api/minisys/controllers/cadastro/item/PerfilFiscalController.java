@@ -51,9 +51,9 @@ public class PerfilFiscalController {
         return ResponseEntity.ok(new PerfilFiscalDto(perfilFiscal));
     }
 
-    @PostMapping("/ativar/{CODIGO}")
+    @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarPerfilFiscal(@PathVariable Long CODIGO) {
+    public ResponseEntity<PerfilFiscalDto> ativarPerfilFiscal(@PathVariable Long CODIGO) {
         var perfilFiscal = perfilFiscalRepository.getReferenceById(CODIGO);
 
         if (perfilFiscal.getStatus().equals(Status.ATIVO)) {
@@ -62,7 +62,7 @@ public class PerfilFiscalController {
             perfilFiscal.setStatusAtivo();
         }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new PerfilFiscalDto(perfilFiscal));
     }
 
     @DeleteMapping("/{CODIGO}")

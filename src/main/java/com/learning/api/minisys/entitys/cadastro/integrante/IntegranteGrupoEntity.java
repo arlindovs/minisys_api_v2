@@ -44,7 +44,7 @@ public class IntegranteGrupoEntity {
 
     public IntegranteGrupoEntity(IntegranteGrupoDto integranteGrupoDto) {
         this.descricao = integranteGrupoDto.descricao();
-        this.status = integranteGrupoDto.status();
+        this.status = Status.ATIVO;
         this.empresa = integranteGrupoDto.empresa();
         this.versao = LocalDateTime.now();
     }

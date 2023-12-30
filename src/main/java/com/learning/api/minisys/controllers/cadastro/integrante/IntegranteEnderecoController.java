@@ -1,6 +1,7 @@
 package com.learning.api.minisys.controllers.cadastro.integrante;
 
 import com.learning.api.minisys.dtos.cadastro.integrante.IntegranteEnderecoDto;
+import com.learning.api.minisys.dtos.cadastro.integrante.IntegranteGrupoDto;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEnderecoEntity;
 import com.learning.api.minisys.entitys.cadastro.integrante.IntegranteEntity;
 import com.learning.api.minisys.repositories.cadastro.integrante.IntegranteEnderecoRepository;
@@ -87,9 +88,11 @@ public class IntegranteEnderecoController {
 
     @DeleteMapping("/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> deletarIntegranteEndereco(Long CODIGO) {
+    public ResponseEntity<IntegranteEnderecoDto> deletarIntegranteEndereco(Long CODIGO) {
+        var integranteEndereco = integranteEnderecoRepository.getReferenceById(CODIGO);
+
         integranteEnderecoRepository.deleteById(CODIGO);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new IntegranteEnderecoDto(integranteEndereco));
     }
 }

@@ -59,9 +59,13 @@ public class IntegranteGrupoController {
         return ResponseEntity.noContent().build();
     }
 
+    /*
+     *Final do controller de desativar é necessário acrescentar o response OK para que retorne no front-end
+     * pois está sendo passado uma condição com o retorno de response.
+     */
     @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarIntegranteGrupo(@PathVariable Long CODIGO) {
+    public ResponseEntity<IntegranteGrupoDto> ativarIntegranteGrupo(@PathVariable Long CODIGO) {
         var integranteGrupo = integranteGrupoRepository.getReferenceById(CODIGO);
 
         if (integranteGrupo.getStatus().equals(Status.ATIVO)) {
@@ -70,7 +74,7 @@ public class IntegranteGrupoController {
             integranteGrupo.setStatusAtivo();
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new IntegranteGrupoDto (integranteGrupo));
     }
 
 

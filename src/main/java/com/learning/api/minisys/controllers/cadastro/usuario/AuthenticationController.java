@@ -3,6 +3,7 @@ package com.learning.api.minisys.controllers.cadastro.usuario;
 import com.learning.api.minisys.dtos.cadastro.usuario.AuthenticationDto;
 import com.learning.api.minisys.dtos.cadastro.usuario.LoginResponseDto;
 import com.learning.api.minisys.entitys.cadastro.usuario.UsuarioEntity;
+import com.learning.api.minisys.infra.exceptions.TratarErros;
 import com.learning.api.minisys.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,11 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDto authenticationDto) {
+    public ResponseEntity login(@RequestBody @Valid AuthenticationDto authenticationDto)  {
                var usernamePassword = new UsernamePasswordAuthenticationToken(authenticationDto.login(), authenticationDto.password());
         var authentication = authenticationManager.authenticate(usernamePassword);
-
         var token = tokenService.generateToken((UsuarioEntity) authentication.getPrincipal());
-
         return ResponseEntity.ok(new LoginResponseDto(token));
     }
+
 }
