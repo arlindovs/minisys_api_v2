@@ -9,6 +9,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.net.PasswordAuthentication;
 import java.time.LocalDateTime;
 
 public record UsuarioTableDto(
@@ -22,11 +23,16 @@ public record UsuarioTableDto(
         @NotBlank(message = "O campo nome é obrigatório")
         String login,
 
+        @NotBlank(message = "O campo senha é obrigatório")
+        String password,
+
         @Enumerated
         Status status,
 
         @NotNull(message = "O campo empresa é obrigatório")
-        Long empresa
+        Long empresa,
+
+        LocalDateTime versao
 ) {
 
     public UsuarioTableDto(UsuarioEntity usuarioEntity) {
@@ -34,7 +40,9 @@ public record UsuarioTableDto(
                 new UsuarioGrupoTableDto(usuarioEntity.getUsuarioGrupo()),
                 new IntegranteTableDto(usuarioEntity.getFuncionario()),
                 usuarioEntity.getLogin(),
+                usuarioEntity.getPassword(),
                 usuarioEntity.getStatus(),
-                usuarioEntity.getEmpresa());
+                usuarioEntity.getEmpresa(),
+                usuarioEntity.getVersao());
     }
 }

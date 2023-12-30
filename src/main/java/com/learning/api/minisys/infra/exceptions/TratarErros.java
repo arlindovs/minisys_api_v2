@@ -60,7 +60,7 @@ public class TratarErros {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseEntity<String> errorLoginHttpResponse403(Exception ex) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Usuário ou senha inválidos! ");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
     }
 }
 

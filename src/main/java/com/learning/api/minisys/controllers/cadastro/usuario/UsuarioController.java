@@ -112,7 +112,7 @@ public class UsuarioController {
 
     @PostMapping("/desativar/{CODIGO}")
     @Transactional
-    public ResponseEntity<Void> ativarUsuario(@PathVariable Long CODIGO) {
+    public ResponseEntity<UsuarioDto> ativarUsuario(@PathVariable Long CODIGO) {
         var usuario = usuarioRepository.getReferenceById(CODIGO);
 
         if(usuario.getStatus().equals(Status.ATIVO)) {
@@ -121,7 +121,7 @@ public class UsuarioController {
             usuario.setStatusAtivo();
         }
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new UsuarioDto(usuario));
     }
 
 }
